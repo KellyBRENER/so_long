@@ -1,0 +1,88 @@
+/* LA MINILIBX
+elle contient toute les fonctions permettant d'ouvrir une fenêtre et d'y
+afficher des images.
+En fait, à la base, c'est libX qui a été créée. Une librairie contenant des
+fonctions permettant d'intéragir avec le serveur graphique. Aujourd'hui, pour
+ce projet, on utilise X11, la version 11 de libX créée en 1987.
+MiniLibX est une librairie créée par 42 pour faciliter l'utilisation de X11.
+##pour télécharger la mlx_linux :
+git clone https://github.com/42Paris/minilibx-linux.git mlx
+##package nécessaires pour utiliser mlx sur linux:
+sudo apt-get update && sudo apt-get install xorg libxext-dev zlib1g-dev libbsd-dev
+
+pour l'utiliser : #include "mlx.h"
+pour avoir des renseignements sur toutes les fonctions dispos:
+	aller dans le dossier mlx puis entrer:
+	description MLX:	man/usr/share/man/man3/mlx.1
+	manage window:		man/usr/share/man/man3/mlx_new_window
+	draw inside window:	man/usr/share/man/man3/mlx_pixel_put
+	manipulate images:	man/usr/share/man/man3/mlx_new_image
+	handle keyboard or mouse events:	man/usr/share/man/man3/mlx_loop
+1ere fonction indispensable qui nous connecte au serveur graphique:
+	void	*mlx_init();
+	cette fonction renvoie un "void *" qui est l'identifiant de connection au
+	serveur graphique. Ce pointeur est malloc dans la fonction init donc avant
+	de fermer le programme, ne pas oublier de free(mlx_ptr).
+	En fait, ce pointeur, pointe sur une structure qui contient plusieurs infos
+	dont un pointeur qui pointe vers une structure "display". Cette structure
+	est issue de la libX et doit être free avant de fermer le programme via la
+	fonction mlx_destroy_display(mlx_ptr).
+la fonction mlx_new_window permet d'ouvrir une nouvelle fenêtre.
+elle renvoie un "void *" qui sera l'identifiant de la nouvelle fenêtre à
+conserver puisqu'on pourra ouvrir plusieurs fenêtres avec chacune un id.
+les paramètres à lui donner sont :
+	l'id de la MLX(mlx_ptr); les coordonnées x et y en pixel pour la largeur et
+	la hauteur de la fenêtre, et le titre de la fenêtre.
+la fonction mlx_loop dessine ce qu'on lui demande et gère les événements, les
+intéractions clavier, souris avec la fenêtre et le programme.
+	mlx_key_hook() gère les événements clavier, et prend en paramètre :
+	win_ptr (fenêtre dans laquelle va se produire lévénement), un pointeur sur
+	fonction qui va appeler une fonction écrite par nous, un ptr qui sera donné
+	en paramètre à notre fonction.
+la fonction mlx_pixel_put permet de dessiner dans la fenêtre et prends en
+parametre : mlx_ptr, win_ptr, x et y (coordonnées du pixel), la couleur du pixel
+(un octet pour le rouge, un pour le vert et un pour le bleu)
+->pour les images à utiliser pour les textures et personnages, aller sur itch.io
+Sujet:
+	Le jeu:
+	- Le programme doit prendre en parametre un fichier de carte se terminant
+	par l'extension .ber
+	- le but du joueur est de collecter tous les items présents sur la carte
+	puis de s'échapper en enpruntant le chemin le + court.
+	- les touches W, A, S et D doivent être utilisées afin de mouvoir le
+	personnage
+	- le joueur doit pouvoir se déplacer dans 4 directions : haut, bas, gauche,
+	droite
+	- le joueur ne doit pas pouvoir se déplacer dans les murs
+	- à chaque mouvement, le compte total de mouvements doit être affiché dans
+	le shell
+	- utiliser une vue 2D (de haut ou de profil)
+	- le jeu n'a pas à être en temps réel
+
+	Gestion graphique:
+	- le programme doit afficher une image dans une fenêtre
+	- la gestion de la fenêtre doit être fluide
+	- appuyer sur la touche esc doit fermer la fenêtre et quitter le programme
+	- cliquer sur la croix en haut à droite de la fenêtre aussi
+	- Utiliser les images de la minilibX est obligatoire
+
+	La carte:
+	- la carte sera construite en utilisant 3 éléments: les murs, les items à
+	collecter, l'espace vide
+	- la carte peut être composée de 5 caractères: 0 pour emplacement vide, 1
+	pour un mur, C pour un item à collecter, E pour la sortie, P pour la
+	position de départ du personnage
+	- la carte doit contenir 1 sortie, au moins 1 item et 1 position de départ
+	- elle doit être de forme rectangulaire
+	- la carte doit être fermée en étant encadrée par des murs
+	- vérifier qu'il existe un chemin valide
+	- si une erreur est détectée, le programme doit quitter proprement et
+	retourner "Error\n" suivi d'un message d'erreur explicite
+
+	Bonus si:
+	- le joueur peut perdre si son personnage est touché par une patrouille
+	ennemie
+	- on ajoute des sprite d'animation
+	- le compte total des points est directement affiché sur l'écran dans la
+	fenêtre plutot que dans le shell.
+*/
