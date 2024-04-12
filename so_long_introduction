@@ -39,10 +39,13 @@ intéractions clavier, souris avec la fenêtre et le programme.
 	win_ptr (fenêtre dans laquelle va se produire lévénement), un pointeur sur
 	fonction qui va appeler une fonction écrite par nous, un ptr qui sera donné
 	en paramètre à notre fonction.
-la fonction mlx_pixel_put permet de dessiner dans la fenêtre et prends en
-parametre : mlx_ptr, win_ptr, x et y (coordonnées du pixel), la couleur du pixel
-(un octet pour le rouge, un pour le vert et un pour le bleu)
+la fonction mlx_pixel_put permet de dessiner dans la fenêtre et prends en parametre : mlx_ptr, win_ptr, x et y (coordonnées du pixel), la couleur du pixel (un octet pour le rouge, un pour le vert et un pour le bleu)
 ->pour les images à utiliser pour les textures et personnages, aller sur itch.io
+pour le code des couleurs, retenir TTRRGGBB:
+- Transparant : FF000000
+- Red : 00FF0000
+- Green : 0000FF00
+- Blue : 000000FF
 Sujet:
 	Le jeu:
 	- Le programme doit prendre en parametre un fichier de carte se terminant

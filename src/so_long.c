@@ -6,21 +6,11 @@
 /*   By: kbrener- <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/09 14:55:14 by kbrener-          #+#    #+#             */
-/*   Updated: 2024/04/09 16:31:35 by kbrener-         ###   ########.fr       */
+/*   Updated: 2024/04/12 15:38:00 by kbrener-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../mlx/mlx.h"
-#include <stdlib.h>
-
-typedef struct	s_data
-{
-	void	*img;
-	char	*addr;
-	int		bits_per_pixel;
-	int		line_length;
-	int		endian;
-}	t_data;
+#include "so_long.h"
 
 void	my_mlx_pixel_put(t_data *data, int x, int y, int color)
 {
@@ -34,7 +24,14 @@ int	main()
 {
 	void	*mlx_ptr;//identifiant de connection au serveur graphique
 	void	*win_ptr;//identifiant de la nouvelle fenêtre
-	t_data	img;
+//	t_data	win_temp;
+	void	*img;
+	char	*relative_path = "./asset/fallout.xpm";
+	int	width;
+	int	height;
+
+	width = IMG_WIDTH;
+	height = IMG_HEIGHT;
 	mlx_ptr = mlx_init();//connection avec le serveur graphique
 	if (!mlx_ptr)
 		return (1);
@@ -45,10 +42,13 @@ int	main()
 		free(mlx_ptr);
 		return (1);
 	}
-	img.img = mlx_new_image(mlx_ptr, 1920, 1080);
-	img.addr = mlx_get_data_addr(img.img, &img.bits_per_pixel, &img.line_length, &img.endian);
-	my_mlx_pixel_put(&img, 5, 5, 0x00FF0000);
-	mlx_put_image_to_window(mlx_ptr, win_ptr, img.img, 0, 0);
+	img = mlx_xpm_file_to_image(mlx_ptr, relative_path, &width, &height);
+	if (!img)
+		return (write(1, "no img", 6), 1);
+//	win_temp.img = mlx_new_image(mlx_ptr, 1920, 1080);
+//	win_temp.addr = mlx_get_data_addr(win_temp.img, &win_temp.bits_per_pixel, &win_temp.line_length, &win_temp.endian);
+//	my_mlx_pixel_put(&img, x, y, 0xFF000000);
+	mlx_put_image_to_window(mlx_ptr, win_ptr, img, 500, 500);
 	mlx_loop(mlx_ptr);
 //	mlx_pixel_put(mlx_ptr, win_ptr, 250, 250, 0xFFFFFF);
 //	mlx_key_hook(win_ptr, deal_key, (void *)0);
