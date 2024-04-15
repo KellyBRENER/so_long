@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   so_long.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: kbrener- <marvin@42.fr>                    +#+  +:+       +#+        */
+/*   By: kbrener- <kbrener-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/09 14:55:14 by kbrener-          #+#    #+#             */
-/*   Updated: 2024/04/15 10:13:54 by kbrener-         ###   ########.fr       */
+/*   Updated: 2024/04/15 10:35:27 by kbrener-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,7 +26,7 @@ int	main()
 	void	*win_ptr;//identifiant de la nouvelle fenêtre
 //	t_data	win_temp;
 	void	*img;
-	char	*relative_path = "../asset/fallout.xpm";
+	char	*relative_path = "./asset/fallout.xpm";
 	int	width;
 	int	height;
 
