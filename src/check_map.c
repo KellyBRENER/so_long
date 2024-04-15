@@ -6,18 +6,22 @@
 /*   By: kbrener- <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/15 11:25:24 by kbrener-          #+#    #+#             */
-/*   Updated: 2024/04/15 15:23:38 by kbrener-         ###   ########.fr       */
+/*   Updated: 2024/04/15 16:28:39 by kbrener-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "so_long.h"
 
-void	ft_check_map(char *argv)
+/*verifie que
+	- le fichier est au format .ber,
+	- on peut l'ouvrir,
+	- la map est rectangulaire
+	- que sa compo respecte les prerequis du sujet*/
+void	ft_check_map(char *argv, char ***map)
 {
 	int	fd;
 	int	x;
 	int	y;
-	char	**map;
 
 	if (ft_file_is_ber(argv) == 1)
 		ft_error("wrong format for map file");
@@ -30,16 +34,17 @@ void	ft_check_map(char *argv)
 		ft_error("map is not a rectangle");
 	}
 	close(fd);
-	map = ft_init_tab(argv, x, y);
-	if (!map)
+	*map = ft_init_tab(argv, x, y);
+	if (!*map)
 		ft_error("error initialising map");
-	if (ft_map_is_usable(map, x, y)!= 0)
+	if (ft_map_is_usable(*map, x, y)!= 0)
 	{
-		ft_free_tab(map);
+		ft_free_tab(*map);
 		ft_error("map is not usable");
 	}
 }
 
+/*verifie que le nom de fichier fini par .ber*/
 int	ft_file_is_ber(char *argv)
 {
 	while (*argv)
@@ -51,6 +56,7 @@ int	ft_file_is_ber(char *argv)
 	return (1);
 }
 
+/*verirfie que la map est un rectangle*/
 int	ft_map_is_rect(int	fd, int *x, int *y)
 {
 	char	*str;
@@ -76,6 +82,7 @@ int	ft_map_is_rect(int	fd, int *x, int *y)
 	return (0);
 }
 
+/*recupere les donnees du fichier.ber pour les mettre dans un tableau*/
 char	**ft_init_tab(char *argv, int x, int y)
 {
 	int	fd;
@@ -101,30 +108,73 @@ char	**ft_init_tab(char *argv, int x, int y)
 	return (tab);
 }
 
+/*verifie que la map est entouree de mur, qu'elle contient au moins un item
+et qu'il n'y a qu'une seule sortie et position de depart */
 int	ft_map_is_usable(char **map, int x, int y)
 {
-	int	exit;
-	int	starting;
-	int	items;
-
-	ft_check_elements;
-}
-
-void	ft_check_elements(char **map, int *exit, int *starting, int *items)
-{
+	t_elem	*elem;
 	int	i;
-	int	j;
 
+	elem = malloc(sizeof(t_elem));
+	if (!elem)
+		return (-1);
+	elem->E = 0;
+	elem->C = 0;
+	elem->P = 0;
 	i = 0;
-	j = 0;
-	*exit = 0;
-	*starting = 0;
-	*items = 0;
 	while (map[i])
 	{
-		while (map[i][j])
+		if ((i = 0 || (i == (y - 1))) && ft_line_is_wall(map[i++]) != 0)
+			return (free(elem), -1);
+		while (i > 0 && i < y)
 		{
-
+			if (ft_count_elements(map[i], elem, x) != 0 || elem->E > 1
+				|| elem->P > 1)
+				return (free(elem), -1);
+			i++;
 		}
 	}
+	if (elem->C < 1)
+		return (free(elem), -1);
+	return (free(elem), 0);
+}
+
+/*compte le nombre d'items, de position de depart et de sortie et verifie
+que la 1ere et derniere position est un mur*/
+int	ft_count_elements(char *map, t_elem *elem, int x)
+{
+	int	i;
+
+	i = 0;
+	while (map[i])
+	{
+		if ((i == 0 || (i == (x - 1))) && map[i] != '1')
+			return (-1);
+		else if (map[i] == 'E')
+			elem->E++;
+		else if (map[i] == 'P')
+			elem->P++;
+		else if (map[i] == 'C')
+			elem->C++;
+		else if (map[i] != 'E' && map[i] != 'P' && map[i] != 'C' &&
+			map[i] != '1' && map[i] != '0')
+			return (-1);
+		i++;
+	}
+	return (0);
+}
+
+/*verifie que la ligne n'est composee que de mur*/
+int	ft_line_is_wall(char *line)
+{
+	int	i;
+
+	i = 0;
+	while(line[i])
+	{
+		if (line[i] != '1')
+			return (-1);
+		i++;
+	}
+	return (0);
 }

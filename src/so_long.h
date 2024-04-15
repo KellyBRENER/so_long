@@ -6,7 +6,7 @@
 /*   By: kbrener- <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/12 15:11:01 by kbrener-          #+#    #+#             */
-/*   Updated: 2024/04/15 15:26:06 by kbrener-         ###   ########.fr       */
+/*   Updated: 2024/04/15 16:18:55 by kbrener-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,9 +30,7 @@ typedef struct	s_elem
 	int	E;
 	int	P;
 	int	C;
-	int	wall;
-	int	
-}
+}	t_elem;
 
 
 typedef struct	s_data
