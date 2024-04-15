@@ -3,15 +3,37 @@
 /*                                                        :::      ::::::::   */
 /*   so_long.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: kbrener- <kbrener-@student.42.fr>          +#+  +:+       +#+        */
+/*   By: kbrener- <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/09 14:55:14 by kbrener-          #+#    #+#             */
-/*   Updated: 2024/04/15 10:35:27 by kbrener-         ###   ########.fr       */
+/*   Updated: 2024/04/15 14:58:19 by kbrener-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "so_long.h"
+void	ft_error(char *message)
+{
+	write(1, "Error\n", 6);
+	ft_putstr_fd(message, 1);
+	exit(1);
+}
+void	ft_free_tab(char **tab)
+{
+	int	i;
 
+	i = 0;
+	if (tab)
+	{
+		while (tab[i])
+		{
+			free(tab[i]);
+			tab[i] = NULL;
+			i++;
+		}
+		free(tab);
+		tab = NULL;
+	}
+}
 void	my_mlx_pixel_put(t_data *data, int x, int y, int color)
 {
 	char	*dst;
@@ -20,8 +42,11 @@ void	my_mlx_pixel_put(t_data *data, int x, int y, int color)
 	*(unsigned int*)dst = color;
 }
 
-int	main()
+int	main(int argc, char **argv)
 {
+	if (argc != 2)
+		ft_error("wrong number of arguments");
+	ft_check_map(argv[1]);
 	void	*mlx_ptr;//identifiant de connection au serveur graphique
 	void	*win_ptr;//identifiant de la nouvelle fenêtre
 //	t_data	win_temp;

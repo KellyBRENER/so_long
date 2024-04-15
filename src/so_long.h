@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   so_long.h                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: kbrener- <kbrener-@student.42.fr>          +#+  +:+       +#+        */
+/*   By: kbrener- <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/12 15:11:01 by kbrener-          #+#    #+#             */
-/*   Updated: 2024/04/15 11:49:02 by kbrener-         ###   ########.fr       */
+/*   Updated: 2024/04/15 15:26:06 by kbrener-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,6 +24,16 @@
 
 #define IMG_WIDTH 75
 #define IMG_HEIGHT 75
+
+typedef struct	s_elem
+{
+	int	E;
+	int	P;
+	int	C;
+	int	wall;
+	int	
+}
+
 
 typedef struct	s_data
 {
