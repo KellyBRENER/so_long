@@ -6,7 +6,7 @@
 /*   By: kbrener- <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/09 14:55:14 by kbrener-          #+#    #+#             */
-/*   Updated: 2024/04/15 14:58:19 by kbrener-         ###   ########.fr       */
+/*   Updated: 2024/04/16 11:04:10 by kbrener-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,9 +44,12 @@ void	my_mlx_pixel_put(t_data *data, int x, int y, int color)
 
 int	main(int argc, char **argv)
 {
+	char	**map;
+
+	map = NULL;
 	if (argc != 2)
 		ft_error("wrong number of arguments");
-	ft_check_map(argv[1]);
+	ft_check_map(argv[1], &map);
 	void	*mlx_ptr;//identifiant de connection au serveur graphique
 	void	*win_ptr;//identifiant de la nouvelle fenêtre
 //	t_data	win_temp;

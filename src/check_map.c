@@ -6,7 +6,7 @@
 /*   By: kbrener- <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/15 11:25:24 by kbrener-          #+#    #+#             */
-/*   Updated: 2024/04/15 16:28:39 by kbrener-         ###   ########.fr       */
+/*   Updated: 2024/04/16 11:49:21 by kbrener-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -108,33 +108,45 @@ char	**ft_init_tab(char *argv, int x, int y)
 	return (tab);
 }
 
+t_elem	*ft_init_elem(void)
+{
+	t_elem	*elem;
+
+	elem = malloc(sizeof(t_elem));
+	if (!elem)
+		return (NULL);
+	elem->E = 0;
+	elem->C = 0;
+	elem->P = 0;
+	elem->P_x = 0;
+	elem->P_y = 0;
+}
+
 /*verifie que la map est entouree de mur, qu'elle contient au moins un item
 et qu'il n'y a qu'une seule sortie et position de depart */
 int	ft_map_is_usable(char **map, int x, int y)
 {
-	t_elem	*elem;
 	int	i;
+	t_elem	*elem;
 
-	elem = malloc(sizeof(t_elem));
+	i = 0;
+	elem = ft_init_elem();
 	if (!elem)
 		return (-1);
-	elem->E = 0;
-	elem->C = 0;
-	elem->P = 0;
-	i = 0;
 	while (map[i])
 	{
 		if ((i = 0 || (i == (y - 1))) && ft_line_is_wall(map[i++]) != 0)
 			return (free(elem), -1);
-		while (i > 0 && i < y)
+		while (i > 0 && (i < (y - 1)))
 		{
-			if (ft_count_elements(map[i], elem, x) != 0 || elem->E > 1
-				|| elem->P > 1)
+			if (ft_count_elements(map[i], elem, x) != 0)
 				return (free(elem), -1);
+			if (elem->P_x != 0 && elem->P_y == 0)
+				elem->P_y = i;
 			i++;
 		}
 	}
-	if (elem->C < 1)
+	if (elem->C < 1 || ft_a_way_exist(map, x, y, elem) != 0)
 		return (free(elem), -1);
 	return (free(elem), 0);
 }
@@ -148,16 +160,25 @@ int	ft_count_elements(char *map, t_elem *elem, int x)
 	i = 0;
 	while (map[i])
 	{
-		if ((i == 0 || (i == (x - 1))) && map[i] != '1')
+		if ((i == 0 || (i == (x - 1))) && map[i] != '1')//contour n'est pas mur
 			return (-1);
 		else if (map[i] == 'E')
+		{
+			if (elem->E == 1)//plus d'une sortie
+				return (-1);
 			elem->E++;
+		}
 		else if (map[i] == 'P')
+		{
+			if (elem->P == 1)//plus d'une position de depart
+				return (-1);
 			elem->P++;
+			elem->P_x = i;
+		}
 		else if (map[i] == 'C')
 			elem->C++;
 		else if (map[i] != 'E' && map[i] != 'P' && map[i] != 'C' &&
-			map[i] != '1' && map[i] != '0')
+			map[i] != '1' && map[i] != '0')//symbole non valable
 			return (-1);
 		i++;
 	}
@@ -177,4 +198,39 @@ int	ft_line_is_wall(char *line)
 		i++;
 	}
 	return (0);
+}
+
+/*verifie qu'un chemin existe pour collecter les items et rejoindre la sortie*/
+int	ft_a_way_exist(char **map, int x, int y, t_elem *elem)
+{
+	int	i;
+	int	j;
+
+	i = elem->P_y;
+	j = elem->P_x;
+	if (ft_wall_everyw(map, i, j) == 0)
+		return (-1);
+	while (i < (y - 1))
+	{
+		while (j < (x - 1) && elem->C > 0)
+		{
+			ft_count_dir_usable(map, i, j)
+			if (map[i][j + 1] == '1')
+			{
+				if (map[i][j - 1] == '1')
+			}
+			if (map[i][j] == 'C')
+				elem->C--;
+
+		}
+	}
+}
+
+/*renvoie 0 si toutes les cases autour de map[i][j] sont des murs*/
+int	ft_wall_everyw(char **map, int i, int j)
+{
+	if (map[i - 1][j] == '1' && map[i + 1][j] == '1' && map[i][j - 1] == '1'
+		&& map[i][j + 1] == 1)
+			return (0);
+	return (1);
 }
