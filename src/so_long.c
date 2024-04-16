@@ -6,7 +6,7 @@
 /*   By: kbrener- <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/09 14:55:14 by kbrener-          #+#    #+#             */
-/*   Updated: 2024/04/16 14:47:58 by kbrener-         ###   ########.fr       */
+/*   Updated: 2024/04/16 16:10:14 by kbrener-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,7 +50,7 @@ int	main(int argc, char **argv)
 	if (argc != 2)
 		ft_error("wrong number of arguments");
 	map = ft_check_map(argv[1]);
-	void	*mlx_ptr;//identifiant de connection au serveur graphique
+/*	void	*mlx_ptr;//identifiant de connection au serveur graphique
 	void	*win_ptr;//identifiant de la nouvelle fenêtre
 //	t_data	win_temp;
 	void	*img;
@@ -84,5 +84,12 @@ int	main(int argc, char **argv)
 //	avant de cloturer le programme:
 	mlx_destroy_display(mlx_ptr);
 	mlx_destroy_window(mlx_ptr, win_ptr);
-	free(mlx_ptr);
+	free(mlx_ptr);*/
+	if (map->tab)
+		write(1, "ok\n", 3);
+	else
+		write(1, "ko\n", 3);
+	ft_free_tab(map->tab);
+	free(map);
+	return (0);
 }

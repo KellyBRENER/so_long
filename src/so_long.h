@@ -6,7 +6,7 @@
 /*   By: kbrener- <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/12 15:11:01 by kbrener-          #+#    #+#             */
-/*   Updated: 2024/04/16 15:23:56 by kbrener-         ###   ########.fr       */
+/*   Updated: 2024/04/16 16:07:14 by kbrener-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,6 +45,10 @@ typedef struct	s_data
 	int		line_length;
 	int		endian;
 }	t_data;
+
+/*main.c : */
+void	ft_error(char *message);
+void	ft_free_tab(char **tab);
 
 
 /*check_map.c : fonctions permettant de verifier que le fichier fourni est

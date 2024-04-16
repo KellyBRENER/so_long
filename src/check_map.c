@@ -6,7 +6,7 @@
 /*   By: kbrener- <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/15 11:25:24 by kbrener-          #+#    #+#             */
-/*   Updated: 2024/04/16 15:18:58 by kbrener-         ###   ########.fr       */
+/*   Updated: 2024/04/16 16:21:13 by kbrener-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -58,7 +58,7 @@ int	ft_map_is_rect(int	fd, t_map_data *map)
 			break;
 		if (map->y == 0)
 			map->x = ft_strlen(str);
-		else if (ft_strlen(str) != map->x)//lignes de differentes tailles
+		else if ((int)ft_strlen(str) != map->x)//lignes de differentes tailles
 			return (free(str), -1);
 		map->y++;
 		free(str);
@@ -79,9 +79,12 @@ int	ft_map_is_usable(t_map_data *map)
 	i = 0;
 	while (map->tab[i])
 	{
-		if ((i = 0 || (i == (map->y - 1)))
-			&& ft_line_is_wall(map->tab[i++]) != 0)
-			return (-1);
+		if (i == 0 || (i == (map->y - 1)))
+		{
+			if (ft_line_is_wall(map->tab[i]) != 0)
+				return (-1);
+			i++;
+		}
 		while (i > 0 && (i < (map->y - 1)))
 		{
 			if (ft_count_elements(map, i, 0) != 0)

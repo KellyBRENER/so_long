@@ -6,7 +6,7 @@
 #    By: kbrener- <marvin@42.fr>                    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/04/09 14:58:49 by kbrener-          #+#    #+#              #
-#    Updated: 2024/04/09 16:07:34 by kbrener-         ###   ########.fr        #
+#    Updated: 2024/04/16 15:54:27 by kbrener-         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -28,6 +28,8 @@ MLX_FLAGS = -Lmlx -lmlx -L/usr/lib/X11 -lXext -lX11
 
 # so_long files
 SRC		= 	src/so_long.c \
+			src/check_map.c \
+			src/check_map_utils.c \
 
 OBJ		= $(SRC:.c=.o)
 
