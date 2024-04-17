@@ -6,7 +6,7 @@
 /*   By: kbrener- <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/15 10:45:10 by kbrener-          #+#    #+#             */
-/*   Updated: 2024/04/17 14:52:11 by kbrener-         ###   ########.fr       */
+/*   Updated: 2024/04/17 15:34:36 by kbrener-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -67,6 +67,19 @@ t_img	*ft_init_all_img();
 	img = malloc(sizeof(t_img));
 	if (!img)
 		return (NULL);
+	//faire ca pour chaque image
+	void	*img;
+	char	*relative_path = "./asset/fallout.xpm";
+	int	width;
+	int	height;
+
+	width = IMG_WIDTH;
+	height = IMG_HEIGHT;
+
+	img = mlx_xpm_file_to_image(mlx_ptr, relative_path, &width, &height);
+	if (!img)
+		return (write(1, "no img", 6), 1);
+	mlx_put_image_to_window(mlx_ptr, win_ptr, img, 500, 500);
 }
 
 t_mlx_data	*ft_init_mlx(void)
