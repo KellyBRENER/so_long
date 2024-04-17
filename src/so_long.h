@@ -6,7 +6,7 @@
 /*   By: kbrener- <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/12 15:11:01 by kbrener-          #+#    #+#             */
-/*   Updated: 2024/04/16 16:07:14 by kbrener-         ###   ########.fr       */
+/*   Updated: 2024/04/17 14:40:13 by kbrener-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,6 +36,25 @@ typedef struct	s_map_data
 	int	P_x;
 	int	P_y;
 }	t_map_data;
+
+typedef struct	s_mlx_data
+{
+	void	*mlx_ptr;
+	void	*win_ptr;
+	t_img	*all_img;
+
+}	t_mlx_data;
+
+typedef struct	s_img
+{
+	void	*img_P_right;
+	void	*img_P_left;
+	void	*img_wall;
+	void	*img_floor;
+	void	*img_items;
+	void	*img_exit;
+}	t_img;
+
 
 typedef struct	s_data
 {

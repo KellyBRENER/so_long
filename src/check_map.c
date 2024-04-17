@@ -6,7 +6,7 @@
 /*   By: kbrener- <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/15 11:25:24 by kbrener-          #+#    #+#             */
-/*   Updated: 2024/04/16 16:21:13 by kbrener-         ###   ########.fr       */
+/*   Updated: 2024/04/17 13:33:41 by kbrener-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -127,8 +127,8 @@ void	ft_flood_map(char **map, int x, int y)
 	if (map[y][x] == '1' || map[y][x] == 'F')
 		return;
 	map[y][x] = 'F';
-	ft_flood_map(map, y + 1, x);
-	ft_flood_map(map, y - 1, x);
-	ft_flood_map(map, y, x + 1);
-	ft_flood_map(map, y, x - 1);
+	ft_flood_map(map, x, y + 1);
+	ft_flood_map(map, x, y - 1);
+	ft_flood_map(map, x + 1, y);
+	ft_flood_map(map, x - 1, y);
 }

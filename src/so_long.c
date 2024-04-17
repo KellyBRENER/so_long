@@ -6,7 +6,7 @@
 /*   By: kbrener- <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/09 14:55:14 by kbrener-          #+#    #+#             */
-/*   Updated: 2024/04/16 16:10:14 by kbrener-         ###   ########.fr       */
+/*   Updated: 2024/04/17 14:42:13 by kbrener-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,16 +42,26 @@ void	my_mlx_pixel_put(t_data *data, int x, int y, int color)
 	*(unsigned int*)dst = color;
 }
 
+
+
 int	main(int argc, char **argv)
 {
 	t_map_data	*map;
+	t_mlx_data	*mlx;
 
+	mlx = NULL;
 	map = NULL;
 	if (argc != 2)
 		ft_error("wrong number of arguments");
 	map = ft_check_map(argv[1]);
-/*	void	*mlx_ptr;//identifiant de connection au serveur graphique
-	void	*win_ptr;//identifiant de la nouvelle fenêtre
+	ft_free_tab(map->tab);
+	map->tab = ft_init_map_tab(argv[1], map);
+	mlx = ft_init_mlx();
+	if (!mlx)
+	{
+		ft_free_tab(map->tab);
+		ft_error("mlx opening failed");
+	}
 //	t_data	win_temp;
 	void	*img;
 	char	*relative_path = "./asset/fallout.xpm";
@@ -60,16 +70,7 @@ int	main(int argc, char **argv)
 
 	width = IMG_WIDTH;
 	height = IMG_HEIGHT;
-	mlx_ptr = mlx_init();//connection avec le serveur graphique
-	if (!mlx_ptr)
-		return (1);
-	win_ptr = mlx_new_window(mlx_ptr, 1920, 1080, "Hello world!");
-	if (!win_ptr)
-	{
-		mlx_destroy_display(mlx_ptr);
-		free(mlx_ptr);
-		return (1);
-	}
+
 	img = mlx_xpm_file_to_image(mlx_ptr, relative_path, &width, &height);
 	if (!img)
 		return (write(1, "no img", 6), 1);
@@ -84,7 +85,7 @@ int	main(int argc, char **argv)
 //	avant de cloturer le programme:
 	mlx_destroy_display(mlx_ptr);
 	mlx_destroy_window(mlx_ptr, win_ptr);
-	free(mlx_ptr);*/
+	free(mlx_ptr);
 	if (map->tab)
 		write(1, "ok\n", 3);
 	else
