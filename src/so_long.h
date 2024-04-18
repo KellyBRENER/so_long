@@ -6,7 +6,7 @@
 /*   By: kbrener- <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/12 15:11:01 by kbrener-          #+#    #+#             */
-/*   Updated: 2024/04/18 11:16:01 by kbrener-         ###   ########.fr       */
+/*   Updated: 2024/04/18 15:21:12 by kbrener-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,15 +37,7 @@ typedef struct	s_map_data
 	int	P_y;
 }	t_map_data;
 
-typedef struct	s_mlx_data
-{
-	void	*mlx_ptr;
-	void	*win_ptr;
-	t_img	*all_img;
-
-}	t_mlx_data;
-
-typedef struct	s_img
+typedef struct	s_all_img
 {
 	char	*path_PR;
 	char	*path_PL;
@@ -61,8 +53,15 @@ typedef struct	s_img
 	void	*img_E;
 	int		height;
 	int		width;
-}	t_img;
+}	t_all_img;
 
+typedef struct	s_mlx_data
+{
+	void	*mlx_ptr;
+	void	*win_ptr;
+	t_all_img	*all_img;
+
+}	t_mlx_data;
 
 typedef struct	s_data
 {
@@ -76,7 +75,9 @@ typedef struct	s_data
 /*main.c : */
 void	ft_error(char *message);
 void	ft_free_tab(char **tab);
-
+void	ft_clean_all(t_mlx_data *mlx, t_map_data *map, char *message);
+void	ft_img_to_window(t_mlx_data *mlx, void *img, int x, int y);
+void	ft_print_map(t_mlx_data *mlx, t_map_data *map);
 
 /*check_map.c : fonctions permettant de verifier que le fichier fourni est
 utilisable pour construire la map*/
@@ -87,14 +88,17 @@ int	ft_a_way_exist(t_map_data *map);
 void	ft_flood_map(char **map, int x, int y);
 
 /*check_map_utils.c : fonctions complementaires de check_map*/
-char	**ft_init_map_tab(char *argv, t_map_data *map);
-t_map_data	*ft_init_map_data(void);
 int	ft_count_elements(t_map_data *map, int i, int j);
 int	ft_line_is_wall(char *line);
 int	ft_file_is_ber(char *argv);
 
 /*init.c : fonctions qui initialisent structures et tableaux*/
-t_img	*ft_init_all_img(void);
+char	**ft_init_map_tab(char *argv, t_map_data *map);
+t_map_data	*ft_init_map_data(void);
+int	ft_xpm_to_img(t_mlx_data *mlx, t_all_img *img);
+t_all_img	*ft_init_all_img(t_mlx_data *mlx);
+t_mlx_data	*ft_init_mlx(t_map_data *map);
+
 
 
 # endif

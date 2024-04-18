@@ -6,7 +6,7 @@
 /*   By: kbrener- <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/09 14:55:14 by kbrener-          #+#    #+#             */
-/*   Updated: 2024/04/18 14:59:15 by kbrener-         ###   ########.fr       */
+/*   Updated: 2024/04/18 15:21:05 by kbrener-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -109,7 +109,7 @@ int	main(int argc, char **argv)
 	map = ft_check_map(argv[1]);
 	ft_free_tab(map->tab);
 	map->tab = ft_init_map_tab(argv[1], map);
-	mlx->mlx_ptr = ft_init_mlx(map);
+	mlx = ft_init_mlx(map);
 	if (!mlx)
 	{
 		ft_free_tab(map->tab);
@@ -129,11 +129,5 @@ int	main(int argc, char **argv)
 	mlx_destroy_display(mlx->mlx_ptr);
 	mlx_destroy_window(mlx->mlx_ptr, mlx->win_ptr);
 	free(mlx->mlx_ptr);
-	if (map->tab)
-		write(1, "ok\n", 3);
-	else
-		write(1, "ko\n", 3);
-	ft_free_tab(map->tab);
-	free(map);
 	return (0);
 }

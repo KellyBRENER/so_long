@@ -1,4 +1,4 @@
-/* ************************************************************************** */
+/******************************************************************************/
 /*                                                                            */
 /*                                                        :::      ::::::::   */
 /*   init.c                                             :+:      :+:    :+:   */
@@ -6,9 +6,9 @@
 /*   By: kbrener- <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/18 15:00:11 by kbrener-          #+#    #+#             */
-/*   Updated: 2024/04/18 15:01:18 by kbrener-         ###   ########.fr       */
+/*   Updated: 2024/04/18 15:45:12 by kbrener-         ###   ########.fr       */
 /*                                                                            */
-/* ************************************************************************** */
+/******************************************************************************/
 
 # include "so_long.h"
 
@@ -58,7 +58,7 @@ t_map_data	*ft_init_map_data(void)
 	return (map);
 }
 
-int	ft_xpm_to_img(t_mlx_data mlx, t_img img)
+int	ft_xpm_to_img(t_mlx_data *mlx, t_all_img *img)
 {
 	img->img_PR = mlx_xpm_file_to_image(mlx->mlx_ptr,
 		img->path_PR, &img->width, &img->height);
@@ -88,11 +88,11 @@ int	ft_xpm_to_img(t_mlx_data mlx, t_img img)
 }
 
 /*malloc et initialise toutes les images*/
-t_img	*ft_init_all_img(t_mlx_data mlx)
+t_all_img	*ft_init_all_img(t_mlx_data *mlx)
 {
-	t_img	*img;
+	t_all_img	*img;
 
-	img = malloc(sizeof(t_img));
+	img = malloc(sizeof(t_all_img));
 	if (!img)
 		return (NULL);
 	img->width = IMG_WIDTH;
@@ -119,7 +119,8 @@ t_mlx_data	*ft_init_mlx(t_map_data *map)
 	mlx->mlx_ptr = mlx_init();//connection avec le serveur graphique
 	if (!mlx->mlx_ptr)
 		return (NULL);
-	mlx->win_ptr = mlx_new_window(mlx->mlx_ptr, (map->x * IMG_HI), 1080, "Hello world!");
+	mlx->win_ptr = mlx_new_window(mlx->mlx_ptr, (map->x * IMG_WIDTH),
+		(map->y * IMG_HEIGHT), "my first map");
 	if (!mlx->win_ptr)
 	{
 		mlx_destroy_display(mlx->mlx_ptr);
@@ -129,9 +130,9 @@ t_mlx_data	*ft_init_mlx(t_map_data *map)
 	mlx->all_img = ft_init_all_img(mlx);
 	if (!mlx->all_img)
 	{
-		mlx_destroy_display(mlx_ptr);
-		mlx_destroy_window(mlx_ptr, win_ptr);
-		free(mlx_ptr);
+		mlx_destroy_display(mlx->mlx_ptr);
+		mlx_destroy_window(mlx->mlx_ptr, mlx->win_ptr);
+		free(mlx->mlx_ptr);
 	}
 	return (mlx);
 }
