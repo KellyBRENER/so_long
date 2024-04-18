@@ -6,7 +6,7 @@
 /*   By: kbrener- <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/12 15:11:01 by kbrener-          #+#    #+#             */
-/*   Updated: 2024/04/17 14:40:13 by kbrener-         ###   ########.fr       */
+/*   Updated: 2024/04/18 11:16:01 by kbrener-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,12 +47,20 @@ typedef struct	s_mlx_data
 
 typedef struct	s_img
 {
-	void	*img_P_right;
-	void	*img_P_left;
-	void	*img_wall;
-	void	*img_floor;
-	void	*img_items;
-	void	*img_exit;
+	char	*path_PR;
+	char	*path_PL;
+	char	*path_W;
+	char	*path_F;
+	char	*path_E;
+	char	*path_C;
+	void	*img_PR;
+	void	*img_PL;
+	void	*img_W;
+	void	*img_F;
+	void	*img_C;
+	void	*img_E;
+	int		height;
+	int		width;
 }	t_img;
 
 
@@ -84,5 +92,9 @@ t_map_data	*ft_init_map_data(void);
 int	ft_count_elements(t_map_data *map, int i, int j);
 int	ft_line_is_wall(char *line);
 int	ft_file_is_ber(char *argv);
+
+/*init.c : fonctions qui initialisent structures et tableaux*/
+t_img	*ft_init_all_img(void);
+
 
 # endif
