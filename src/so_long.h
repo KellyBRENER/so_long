@@ -6,7 +6,7 @@
 /*   By: kbrener- <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/12 15:11:01 by kbrener-          #+#    #+#             */
-/*   Updated: 2024/04/18 15:21:12 by kbrener-         ###   ########.fr       */
+/*   Updated: 2024/04/19 16:32:41 by kbrener-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -60,6 +60,7 @@ typedef struct	s_mlx_data
 	void	*mlx_ptr;
 	void	*win_ptr;
 	t_all_img	*all_img;
+	t_map_data	*map;
 
 }	t_mlx_data;
 
@@ -72,16 +73,16 @@ typedef struct	s_data
 	int		endian;
 }	t_data;
 
-/*main.c : */
-void	ft_error(char *message);
-void	ft_free_tab(char **tab);
-void	ft_clean_all(t_mlx_data *mlx, t_map_data *map, char *message);
+/*clean_error.c : */
+void	ft_error(t_mlx_data *mlx, char *message);
+void	ft_free_map(t_mlx_data *mlx);
+void	ft_clean_all(t_mlx_data *mlx);
 void	ft_img_to_window(t_mlx_data *mlx, void *img, int x, int y);
-void	ft_print_map(t_mlx_data *mlx, t_map_data *map);
+void	ft_print_map(t_mlx_data *mlx);
 
 /*check_map.c : fonctions permettant de verifier que le fichier fourni est
 utilisable pour construire la map*/
-t_map_data	*ft_check_map(char *argv);
+void	ft_check_map(t_mlx_data *mlx, char *argv);
 int	ft_map_is_rect(int	fd, t_map_data *map);
 int	ft_map_is_usable(t_map_data *map);
 int	ft_a_way_exist(t_map_data *map);
@@ -94,10 +95,10 @@ int	ft_file_is_ber(char *argv);
 
 /*init.c : fonctions qui initialisent structures et tableaux*/
 char	**ft_init_map_tab(char *argv, t_map_data *map);
-t_map_data	*ft_init_map_data(void);
+t_map_data	*ft_init_map_data(t_mlx_data *mlx);
 int	ft_xpm_to_img(t_mlx_data *mlx, t_all_img *img);
 t_all_img	*ft_init_all_img(t_mlx_data *mlx);
-t_mlx_data	*ft_init_mlx(t_map_data *map);
+void	ft_init_mlx(t_mlx_data *mlx);
 
 
 

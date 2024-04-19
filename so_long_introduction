@@ -33,6 +33,8 @@ conserver puisqu'on pourra ouvrir plusieurs fenêtres avec chacune un id.
 les paramètres à lui donner sont :
 	l'id de la MLX(mlx_ptr); les coordonnées x et y en pixel pour la largeur et
 	la hauteur de la fenêtre, et le titre de la fenêtre.
+	utiliser mlx_destroy_window() pour free toutes les struct utilisees par mlx
+	pour la creation de win.
 la fonction mlx_loop dessine ce qu'on lui demande et gère les événements, les
 intéractions clavier, souris avec la fenêtre et le programme.
 	mlx_key_hook() gère les événements clavier, et prend en paramètre :

@@ -1,4 +1,4 @@
-/******************************************************************************/
+/* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
 /*   init.c                                             :+:      :+:    :+:   */
@@ -6,9 +6,9 @@
 /*   By: kbrener- <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/18 15:00:11 by kbrener-          #+#    #+#             */
-/*   Updated: 2024/04/18 15:45:12 by kbrener-         ###   ########.fr       */
+/*   Updated: 2024/04/19 16:28:13 by kbrener-         ###   ########.fr       */
 /*                                                                            */
-/******************************************************************************/
+/* ************************************************************************** */
 
 # include "so_long.h"
 
@@ -40,13 +40,13 @@ char	**ft_init_map_tab(char *argv, t_map_data *map)
 }
 
 /*malloc et initialise chaque variable de la structure t_map_data*/
-t_map_data	*ft_init_map_data(void)
+t_map_data	*ft_init_map_data(t_mlx_data *mlx)
 {
 	t_map_data	*map;
 
 	map = malloc(sizeof(t_map_data));
 	if (!map)
-		ft_error("error initialising map_data");
+		ft_error(mlx, "error initialising map_data");
 	map->tab = NULL;
 	map->x = 0;
 	map->y = 0;
@@ -109,30 +109,16 @@ t_all_img	*ft_init_all_img(t_mlx_data *mlx)
 }
 
 
-t_mlx_data	*ft_init_mlx(t_map_data *map)
+void	ft_init_mlx(t_mlx_data *mlx)
 {
-	t_mlx_data	*mlx;
-
-	mlx = malloc(sizeof(t_mlx_data));
-	if (!mlx)
-		return (NULL);
 	mlx->mlx_ptr = mlx_init();//connection avec le serveur graphique
 	if (!mlx->mlx_ptr)
-		return (NULL);
-	mlx->win_ptr = mlx_new_window(mlx->mlx_ptr, (map->x * IMG_WIDTH),
-		(map->y * IMG_HEIGHT), "my first map");
+		ft_error(mlx, "mlx initialisation failed");
+	mlx->win_ptr = mlx_new_window(mlx->mlx_ptr, (mlx->map->x * IMG_WIDTH),
+		(mlx->map->y * IMG_HEIGHT), "my first map");
 	if (!mlx->win_ptr)
-	{
-		mlx_destroy_display(mlx->mlx_ptr);
-		free(mlx->mlx_ptr);
-		return (NULL);
-	}
+		ft_error(mlx, "window creation failed");
 	mlx->all_img = ft_init_all_img(mlx);
 	if (!mlx->all_img)
-	{
-		mlx_destroy_display(mlx->mlx_ptr);
-		mlx_destroy_window(mlx->mlx_ptr, mlx->win_ptr);
-		free(mlx->mlx_ptr);
-	}
-	return (mlx);
+		ft_error(mlx, "t_all_img struct creation failed");
 }

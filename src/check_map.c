@@ -6,7 +6,7 @@
 /*   By: kbrener- <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/15 11:25:24 by kbrener-          #+#    #+#             */
-/*   Updated: 2024/04/17 13:33:41 by kbrener-         ###   ########.fr       */
+/*   Updated: 2024/04/19 16:19:15 by kbrener-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,33 +17,27 @@
 	- on peut l'ouvrir,
 	- la map est rectangulaire
 	- que sa compo respecte les prerequis du sujet*/
-t_map_data	*ft_check_map(char *argv)
+void	ft_check_map(t_mlx_data *mlx, char *argv)
 {
 	int	fd;
-	t_map_data	*map;
 
-	map = ft_init_map_data();
+	mlx->map = ft_init_map_data(mlx);
 	if (ft_file_is_ber(argv) == 1)
-		ft_error("wrong format for map file");
+		ft_error(mlx, "wrong format for map file");
 	fd = open(argv, O_RDONLY);
 	if (fd == -1)
-		ft_error("file cannot be open");
-	if (ft_map_is_rect(fd, map) != 0)
+		ft_error(mlx, "file cannot be open");
+	if (ft_map_is_rect(fd, mlx->map) != 0)
 	{
 		close(fd);
-		ft_error("map is not a rectangle");
+		ft_error(mlx, "map is not a rectangle");
 	}
 	close(fd);
-	map->tab = ft_init_map_tab(argv, map);
-	if (!map->tab)
-		ft_error("error initialising map");
-	if (ft_map_is_usable(map) != 0)
-	{
-		ft_free_tab(map->tab);
-		free(map);
-		ft_error("map is not usable");
-	}
-	return (map);
+	mlx->map->tab = ft_init_map_tab(argv, mlx->map);
+	if (!mlx->map->tab)
+		ft_error(mlx, "error initialising map");
+	if (ft_map_is_usable(mlx->map) != 0)
+		ft_error(mlx, "map is not usable");
 }
 
 /*verirfie que la map est un rectangle*/

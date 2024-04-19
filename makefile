@@ -6,7 +6,7 @@
 #    By: kbrener- <marvin@42.fr>                    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/04/09 14:58:49 by kbrener-          #+#    #+#              #
-#    Updated: 2024/04/18 15:36:04 by kbrener-         ###   ########.fr        #
+#    Updated: 2024/04/19 16:39:47 by kbrener-         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -31,6 +31,8 @@ SRC		= 	src/so_long.c \
 			src/check_map.c \
 			src/check_map_utils.c \
 			src/init.c \
+			src/clean_error.c \
+			src/print.c\
 
 OBJ		= $(SRC:.c=.o)
 
