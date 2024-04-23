@@ -6,7 +6,7 @@
 /*   By: kbrener- <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/09 14:55:14 by kbrener-          #+#    #+#             */
-/*   Updated: 2024/04/23 10:15:48 by kbrener-         ###   ########.fr       */
+/*   Updated: 2024/04/23 13:38:23 by kbrener-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,6 +34,8 @@ int	main(int argc, char **argv)
 	mlx->map->tab = ft_init_map_tab(argv[1], mlx->map);
 	ft_init_mlx(mlx);
 	ft_print_map(mlx);
+	mlx_key_hook(mlx->win_ptr, ft_move(), mlx);
+	mlx_hook(mlx->win_ptr, 17, 0, (void *)exit, 0);
 //	t_data	win_temp;
 //	win_temp.img = mlx_new_image(mlx_ptr, 1920, 1080);
 //	win_temp.addr = mlx_get_data_addr(win_temp.img, &win_temp.bits_per_pixel, &win_temp.line_length, &win_temp.endian);
