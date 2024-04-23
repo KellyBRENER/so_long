@@ -6,7 +6,7 @@
 /*   By: kbrener- <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/12 15:11:01 by kbrener-          #+#    #+#             */
-/*   Updated: 2024/04/19 16:32:41 by kbrener-         ###   ########.fr       */
+/*   Updated: 2024/04/23 10:15:36 by kbrener-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,6 +21,8 @@
 # include "../libft/libft/libft.h"
 # include "../libft/gnl/get_next_line.h"
 # include "../libft/printf/ft_printf.h"
+# include <X11/keysym.h>
+# include <X11/X.h>
 
 #define IMG_WIDTH 75
 #define IMG_HEIGHT 75
@@ -77,6 +79,7 @@ typedef struct	s_data
 void	ft_error(t_mlx_data *mlx, char *message);
 void	ft_free_map(t_mlx_data *mlx);
 void	ft_clean_all(t_mlx_data *mlx);
+void	ft_free_tab(char **tab);
 void	ft_img_to_window(t_mlx_data *mlx, void *img, int x, int y);
 void	ft_print_map(t_mlx_data *mlx);
 

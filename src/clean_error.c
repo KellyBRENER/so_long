@@ -6,7 +6,7 @@
 /*   By: kbrener- <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/19 10:31:51 by kbrener-          #+#    #+#             */
-/*   Updated: 2024/04/19 11:42:59 by kbrener-         ###   ########.fr       */
+/*   Updated: 2024/04/23 10:15:08 by kbrener-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,6 +20,20 @@ void	ft_error(t_mlx_data *mlx, char *message)
 	exit(1);
 }
 
+void	ft_free_tab(char **tab)
+{
+	int	i;
+
+	i = 0;
+	while (tab[i])
+		{
+			free(tab[i]);
+			tab[i] = NULL;
+			i++;
+		}
+		free(tab);
+		tab = NULL;
+}
 
 void	ft_free_map(t_mlx_data *mlx)
 {
@@ -28,14 +42,7 @@ void	ft_free_map(t_mlx_data *mlx)
 	i = 0;
 	if (mlx->map->tab)
 	{
-		while (mlx->map->tab[i])
-		{
-			free(mlx->map->tab[i]);
-			mlx->map->tab[i] = NULL;
-			i++;
-		}
-		free(mlx->map->tab);
-		mlx->map->tab = NULL;
+		ft_free_tab(mlx->map->tab);
 	}
 	free(mlx->map);
 	mlx->map = NULL;

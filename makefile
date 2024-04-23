@@ -6,7 +6,7 @@
 #    By: kbrener- <marvin@42.fr>                    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/04/09 14:58:49 by kbrener-          #+#    #+#              #
-#    Updated: 2024/04/19 16:39:47 by kbrener-         ###   ########.fr        #
+#    Updated: 2024/04/23 10:16:19 by kbrener-         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -33,6 +33,7 @@ SRC		= 	src/so_long.c \
 			src/init.c \
 			src/clean_error.c \
 			src/print.c\
+#			src/keypress.c \
 
 OBJ		= $(SRC:.c=.o)
 
