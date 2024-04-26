@@ -6,7 +6,7 @@
 /*   By: kbrener- <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/09 14:55:14 by kbrener-          #+#    #+#             */
-/*   Updated: 2024/04/26 11:29:47 by kbrener-         ###   ########.fr       */
+/*   Updated: 2024/04/26 13:55:15 by kbrener-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,6 +37,5 @@ int	main(int argc, char **argv)
 	mlx_key_hook(mlx->win_ptr, &ft_move, mlx);
 	mlx_hook(mlx->win_ptr, 17, 0, ft_exit, (void *)mlx);//gere croix fenetre
 	mlx_loop(mlx->mlx_ptr);
-	ft_clean_all(mlx);
-	exit (0);
+	ft_exit(mlx);
 }

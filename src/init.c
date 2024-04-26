@@ -6,7 +6,7 @@
 /*   By: kbrener- <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/18 15:00:11 by kbrener-          #+#    #+#             */
-/*   Updated: 2024/04/26 11:58:17 by kbrener-         ###   ########.fr       */
+/*   Updated: 2024/04/26 14:05:03 by kbrener-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,7 +31,7 @@ char	**ft_init_map_tab(char *argv, t_map_data *map)
 		tab[i] = get_next_line(fd);
 		if (!tab[i])
 			return (ft_free_tab(tab), close(fd), NULL);
-		tab[i][map->x - 1] = '\0';
+		tab[i][map->x] = '\0';
 		i++;
 	}
 	close(fd);

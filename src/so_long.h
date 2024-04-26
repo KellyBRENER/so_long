@@ -6,7 +6,7 @@
 /*   By: kbrener- <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/12 15:11:01 by kbrener-          #+#    #+#             */
-/*   Updated: 2024/04/26 12:00:15 by kbrener-         ###   ########.fr       */
+/*   Updated: 2024/04/26 13:49:25 by kbrener-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -99,6 +99,9 @@ void	ft_init_mlx(t_mlx_data *mlx);
 /*keypress.c : gere les interactions entre clavier/souris et map*/
 int	ft_move(int keysym, t_mlx_data *mlx);
 void	ft_up(t_mlx_data *mlx);
+void	ft_down(t_mlx_data *mlx);
+void	ft_left(t_mlx_data *mlx);
+void	ft_right(t_mlx_data *mlx);
 void	ft_print_move(t_mlx_data *mlx, int dir);
 
 

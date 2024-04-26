@@ -6,7 +6,7 @@
 /*   By: kbrener- <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/15 11:25:24 by kbrener-          #+#    #+#             */
-/*   Updated: 2024/04/26 09:52:54 by kbrener-         ###   ########.fr       */
+/*   Updated: 2024/04/26 14:02:55 by kbrener-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,8 +51,8 @@ int	ft_map_is_rect(int	fd, t_map_data *map)
 		if (!str)
 			break;
 		if (map->y == 0)
-			map->x = ft_strlen(str);
-		else if ((int)ft_strlen(str) != map->x)//lignes de differentes tailles
+			map->x = ft_strlen(str) - 1;
+		else if ((int)ft_strlen(str) != (map->x + 1))//lignes de differentes tailles
 			return (free(str), -1);
 		map->y++;
 		free(str);
