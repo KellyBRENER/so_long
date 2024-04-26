@@ -6,7 +6,7 @@
 /*   By: kbrener- <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/18 15:00:11 by kbrener-          #+#    #+#             */
-/*   Updated: 2024/04/23 09:48:35 by kbrener-         ###   ########.fr       */
+/*   Updated: 2024/04/26 11:58:17 by kbrener-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -121,4 +121,5 @@ void	ft_init_mlx(t_mlx_data *mlx)
 	mlx->all_img = ft_init_all_img(mlx);
 	if (!mlx->all_img)
 		ft_error(mlx, "t_all_img struct creation failed");
+	mlx->move = 0;
 }

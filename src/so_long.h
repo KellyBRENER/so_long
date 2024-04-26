@@ -6,7 +6,7 @@
 /*   By: kbrener- <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/12 15:11:01 by kbrener-          #+#    #+#             */
-/*   Updated: 2024/04/23 10:15:36 by kbrener-         ###   ########.fr       */
+/*   Updated: 2024/04/26 12:00:15 by kbrener-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -63,17 +63,9 @@ typedef struct	s_mlx_data
 	void	*win_ptr;
 	t_all_img	*all_img;
 	t_map_data	*map;
+	int	move;
 
 }	t_mlx_data;
-
-typedef struct	s_data
-{
-	void	*img;
-	char	*addr;
-	int		bits_per_pixel;
-	int		line_length;
-	int		endian;
-}	t_data;
 
 /*clean_error.c : */
 void	ft_error(t_mlx_data *mlx, char *message);
@@ -82,6 +74,7 @@ void	ft_clean_all(t_mlx_data *mlx);
 void	ft_free_tab(char **tab);
 void	ft_img_to_window(t_mlx_data *mlx, void *img, int x, int y);
 void	ft_print_map(t_mlx_data *mlx);
+int	ft_exit(void *mlx);
 
 /*check_map.c : fonctions permettant de verifier que le fichier fourni est
 utilisable pour construire la map*/
@@ -102,6 +95,11 @@ t_map_data	*ft_init_map_data(t_mlx_data *mlx);
 int	ft_xpm_to_img(t_mlx_data *mlx, t_all_img *img);
 t_all_img	*ft_init_all_img(t_mlx_data *mlx);
 void	ft_init_mlx(t_mlx_data *mlx);
+
+/*keypress.c : gere les interactions entre clavier/souris et map*/
+int	ft_move(int keysym, t_mlx_data *mlx);
+void	ft_up(t_mlx_data *mlx);
+void	ft_print_move(t_mlx_data *mlx, int dir);
 
 
 
