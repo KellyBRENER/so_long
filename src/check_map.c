@@ -6,7 +6,7 @@
 /*   By: kbrener- <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/15 11:25:24 by kbrener-          #+#    #+#             */
-/*   Updated: 2024/04/26 14:02:55 by kbrener-         ###   ########.fr       */
+/*   Updated: 2024/04/26 15:22:00 by kbrener-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,7 +41,7 @@ void	ft_check_map(t_mlx_data *mlx, char *argv)
 }
 
 /*verirfie que la map est un rectangle*/
-int	ft_map_is_rect(int	fd, t_map_data *map)
+int	ft_map_is_rect(int fd, t_map_data *map)
 {
 	char	*str;
 
@@ -49,18 +49,16 @@ int	ft_map_is_rect(int	fd, t_map_data *map)
 	{
 		str = get_next_line(fd);
 		if (!str)
-			break;
+			break ;
 		if (map->y == 0)
 			map->x = ft_strlen(str) - 1;
-		else if ((int)ft_strlen(str) != (map->x + 1))//lignes de differentes tailles
+		else if ((int) ft_strlen(str) != (map->x + 1))
 			return (free(str), -1);
 		map->y++;
 		free(str);
 	}
 	if (map->y == 0 || map->x == 0)
 		return (-1);
-	//if (map->y == map->x)
-	//	return (-1);
 	return (0);
 }
 
@@ -86,7 +84,7 @@ int	ft_map_is_usable(t_map_data *map)
 			i++;
 		}
 	}
-	if (map->C < 1 || map->E != 1 || map->P != 1 || ft_a_way_exist(map) != 0)
+	if (map->c < 1 || map->e != 1 || map->p != 1 || ft_a_way_exist(map) != 0)
 		return (-1);
 	return (0);
 }
@@ -99,7 +97,7 @@ int	ft_a_way_exist(t_map_data *map)
 
 	i = 1;
 	j = 1;
-	ft_flood_map(map->tab, map->P_x, map->P_y);
+	ft_flood_map(map->tab, map->p_x, map->p_y);
 	while (map->tab[i])
 	{
 		while (map->tab[i][j])
@@ -119,7 +117,7 @@ int	ft_a_way_exist(t_map_data *map)
 void	ft_flood_map(char **map, int x, int y)
 {
 	if (map[y][x] == '1' || map[y][x] == 'F')
-		return;
+		return ;
 	map[y][x] = 'F';
 	ft_flood_map(map, x, y + 1);
 	ft_flood_map(map, x, y - 1);

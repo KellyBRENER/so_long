@@ -6,7 +6,7 @@
 #    By: kbrener- <marvin@42.fr>                    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/04/09 14:58:49 by kbrener-          #+#    #+#              #
-#    Updated: 2024/04/26 10:00:11 by kbrener-         ###   ########.fr        #
+#    Updated: 2024/04/26 14:40:13 by kbrener-         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -18,13 +18,15 @@ CC		= cc
 CFLAGS	= -Wall -Wextra -Werror -g #-fsanitize=address
 
 # Libft
+LIBFT_NAME = libft.a
 LIBFT_PATH = ./libft/
-LIBFT_LIB = $(LIBFT_PATH)libft.a
+LIBFT = $(LIBFT_PATH)$(LIBFT_NAME)
 
 # MinilibX
+MLX_NAME = libmlx.a
 MLX_PATH = ./mlx/
-MLX_LIB = $(MLX_PATH)libmlx.a
-MLX_FLAGS = -Lmlx -lmlx -L/usr/lib/X11 -lXext -lX11
+MLX = $(MLX_PATH)$(MLX_NAME)
+#MLX_FLAGS = -Lmlx -lmlx -L/usr/lib/X11 -lXext -lX11
 
 # so_long files
 SRC		= 	src/so_long.c \
@@ -38,8 +40,7 @@ SRC		= 	src/so_long.c \
 OBJ		= $(SRC:.c=.o)
 
 # Includes
-INCLUDES = 	-I ./includes/\
-			-I ./mlx/\
+INC = 	-I ./mlx/\
 			-I ./libft/\
 
 # Colors
@@ -51,48 +52,47 @@ YELLOW = \033[33m
 ORANGE = \033[93m
 BLUE = \033[94m
 
-all : $(MLX_LIB) $(LIBFT_LIB) $(NAME)
+all : $(MLX) $(LIBFT) $(NAME)
 
 # Compiling Libft and Mlx
 %.o: %.c
-		$(CC) $(CFLAGS) -c $< -o $@ $(INCLUDES)
+		$(CC) $(CFLAGS) -c $< -o $@
 
-$(LIBFT_LIB):
+$(LIBFT):
 	@make -sC $(LIBFT_PATH)
-	@echo "\n"
-	@echo "$(BOLD)$(GREEN)🎆     Libft Compiled    🎆$(RESET)"
 	@echo "\n"
 	@echo "$(BOLD)$(BLUE)-----------------------$(RESET)"
 	@echo "\n"
 
-$(MLX_LIB):
-	@echo "$(BOLD)$(RED)🛠️ 🚧      Compiling MiniLibX      🚧🛠️$(RESET)"
+$(MLX):
+	@echo "$(BOLD)$(RED)🛠️      Compiling MiniLibX      🛠️$(RESET)"
 	@echo "\n"
-	@make -C $(MLX_PATH)
-	@echo "$(BOLD)$(GREEN)🎆     MiniLibX Compiled    🎆$(RESET)"
+	@make all -sC $(MLX_PATH)
+	@echo "\n"
+	@echo "$(BOLD)$(GREEN)😎     MiniLibX Compiled    😎$(RESET)"
 	@echo "\n"
 	@echo "$(BOLD)$(BLUE)-----------------------$(RESET)"
 	@echo "\n"
 
 # Compiling so_long
 $(NAME): $(OBJ)
-	@echo "$(BOLD)$(RED)🛠️ 🚧      Compiling so_long      🚧🛠️$(RESET)"
+	@echo "$(BOLD)$(RED)🛠️      Compiling so_long    🛠️$(RESET)"
 	@echo "\n"
-	@$(CC) $(CFLAGS) $(OBJ) $(LIBFT_LIB) $(MLX_LIB) $(MLX_FLAGS) -o $(NAME) -g
-	@echo "$(BOLD)$(GREEN)📟👾🕹️    so_long ready to use    📟👾🕹️$(RESET)"
+	@$(CC) $(CFLAGS) $(OBJ) $(MLX) $(LIBFT) $(INC) -lXext -lX11 -lm -lz -o $(NAME) -g
+	@echo "$(BOLD)$(GREEN)✅✅      so_long fully compiled, ready to use       ✅✅$(RESET)"
 	@echo "\n"
 
 clean:
 	@make clean -sC $(LIBFT_PATH)
-	@rm -rf $(OBJ)
-	@echo "$(BOLD)$(ORANGE)🧹🧼     Cleaned .o Libft's files   🧼🧹$(RESET)"
+	@rm -f $(OBJ)
+	@echo "$(BOLD)$(ORANGE)🌀     Cleaned .o so_long's files   🌀$(RESET)"
 	@make clean -sC $(MLX_PATH)
-	@echo "$(BOLD)$(ORANGE)🧹🧼     Cleaned .o MiniLibX's files  🧼🧹$(RESET)"
+	@echo "$(BOLD)$(ORANGE)🌀     Cleaned .o MiniLibX's files  🌀$(RESET)"
 
 fclean: clean
-#	@make fclean -sC
-	@rm -rf $(MLX_LIB) $(LIBFT_LIB) $(NAME)
-	@echo "$(BOLD)$(ORANGE)🧹🧼    Cleaned libs and so_long exec    🧼🧹$(RESET)"
+	@make fclean -sC libft/
+	@rm -f $(NAME)
+	@echo "$(BOLD)$(ORANGE)🌀     Cleaned so_long exec       🌀$(RESET)"
 
 re: fclean all
 

@@ -6,18 +6,18 @@
 /*   By: kbrener- <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/18 15:00:11 by kbrener-          #+#    #+#             */
-/*   Updated: 2024/04/26 14:05:03 by kbrener-         ###   ########.fr       */
+/*   Updated: 2024/04/26 15:24:46 by kbrener-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-# include "so_long.h"
+#include "so_long.h"
 
 /*recupere les donnees du fichier.ber pour les mettre dans un tableau*/
 char	**ft_init_map_tab(char *argv, t_map_data *map)
 {
-	int	fd;
+	int		fd;
 	char	**tab;
-	int	i;
+	int		i;
 
 	i = 0;
 	fd = open(argv, O_RDONLY);
@@ -50,39 +50,39 @@ t_map_data	*ft_init_map_data(t_mlx_data *mlx)
 	map->tab = NULL;
 	map->x = 0;
 	map->y = 0;
-	map->E = 0;
-	map->C = 0;
-	map->P = 0;
-	map->P_x = 0;
-	map->P_y = 0;
+	map->e = 0;
+	map->c = 0;
+	map->p = 0;
+	map->p_x = 0;
+	map->p_y = 0;
 	return (map);
 }
 
 int	ft_xpm_to_img(t_mlx_data *mlx, t_all_img *img)
 {
-	img->img_PR = mlx_xpm_file_to_image(mlx->mlx_ptr,
-		img->path_PR, &img->width, &img->height);
-	if (!img->img_PR)
+	img->img_pr = mlx_xpm_file_to_image(mlx->mlx_ptr,
+			img->path_pr, &img->width, &img->height);
+	if (!img->img_pr)
 		return (-1);
-	img->img_PL = mlx_xpm_file_to_image(mlx->mlx_ptr,
-		img->path_PL, &img->width, &img->height);
-	if (!img->img_PL)
+	img->img_pl = mlx_xpm_file_to_image(mlx->mlx_ptr,
+			img->path_pl, &img->width, &img->height);
+	if (!img->img_pl)
 		return (-1);
-	img->img_W = mlx_xpm_file_to_image(mlx->mlx_ptr,
-		img->path_W, &img->width, &img->height);
-	if (!img->img_W)
+	img->img_w = mlx_xpm_file_to_image(mlx->mlx_ptr,
+			img->path_w, &img->width, &img->height);
+	if (!img->img_w)
 		return (-1);
-	img->img_F = mlx_xpm_file_to_image(mlx->mlx_ptr,
-		img->path_F, &img->width, &img->height);
-	if (!img->img_F)
+	img->img_f = mlx_xpm_file_to_image(mlx->mlx_ptr,
+			img->path_f, &img->width, &img->height);
+	if (!img->img_f)
 		return (-1);
-	img->img_E = mlx_xpm_file_to_image(mlx->mlx_ptr,
-		img->path_E, &img->width, &img->height);
-	if (!img->img_E)
+	img->img_e = mlx_xpm_file_to_image(mlx->mlx_ptr,
+			img->path_e, &img->width, &img->height);
+	if (!img->img_e)
 		return (-1);
-	img->img_C = mlx_xpm_file_to_image(mlx->mlx_ptr,
-		img->path_C, &img->width, &img->height);
-	if (!img->img_C)
+	img->img_c = mlx_xpm_file_to_image(mlx->mlx_ptr,
+			img->path_c, &img->width, &img->height);
+	if (!img->img_c)
 		return (-1);
 	return (0);
 }
@@ -97,25 +97,24 @@ t_all_img	*ft_init_all_img(t_mlx_data *mlx)
 		return (NULL);
 	img->width = IMG_WIDTH;
 	img->height = IMG_HEIGHT;
-	img->path_PR = "./asset/player_right.xpm";
-	img->path_PL = "./asset/player_left.xpm";
-	img->path_W = "./asset/wall.xpm";
-	img->path_F = "./asset/floor.xpm";
-	img->path_E = "./asset/exit.xpm";
-	img->path_C = "./asset/item.xpm";
+	img->path_pr = "./asset/player_right.xpm";
+	img->path_pl = "./asset/player_left.xpm";
+	img->path_w = "./asset/wall.xpm";
+	img->path_f = "./asset/floor.xpm";
+	img->path_e = "./asset/exit.xpm";
+	img->path_c = "./asset/item.xpm";
 	if (ft_xpm_to_img(mlx, img) == -1)
 		return (NULL);
 	return (img);
 }
 
-
 void	ft_init_mlx(t_mlx_data *mlx)
 {
-	mlx->mlx_ptr = mlx_init();//connection avec le serveur graphique
+	mlx->mlx_ptr = mlx_init();
 	if (!mlx->mlx_ptr)
 		ft_error(mlx, "mlx initialisation failed");
 	mlx->win_ptr = mlx_new_window(mlx->mlx_ptr, (mlx->map->x * IMG_WIDTH),
-		(mlx->map->y * IMG_HEIGHT), "my first map");
+			(mlx->map->y * IMG_HEIGHT), "my first map");
 	if (!mlx->win_ptr)
 		ft_error(mlx, "window creation failed");
 	mlx->all_img = ft_init_all_img(mlx);

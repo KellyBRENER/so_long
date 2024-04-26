@@ -6,19 +6,28 @@
 /*   By: kbrener- <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/09 14:55:14 by kbrener-          #+#    #+#             */
-/*   Updated: 2024/04/26 13:55:15 by kbrener-         ###   ########.fr       */
+/*   Updated: 2024/04/26 15:06:10 by kbrener-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "so_long.h"
 
-/*void	my_mlx_pixel_put(t_data *data, int x, int y, int color)
+/*clean et sort du programme proprement en cas d'erreur*/
+void	ft_error(t_mlx_data *mlx, char *message)
 {
-	char	*dst;
+	ft_clean_all(mlx);
+	write(1, "Error\n", 6);
+	ft_putstr_fd(message, 1);
+	exit(1);
+}
 
-	dst = data->addr + (y * data->line_length + x * (data->bits_per_pixel / 8));
-	*(unsigned int*)dst = color;
-}*/
+/*clean et sort du programme proprement si esc ou close*/
+int	ft_exit(void *mlx)
+{
+	ft_clean_all((t_mlx_data *)mlx);
+	exit(0);
+}
+
 int	main(int argc, char **argv)
 {
 	t_mlx_data	*mlx;
@@ -35,7 +44,7 @@ int	main(int argc, char **argv)
 	ft_init_mlx(mlx);
 	ft_print_map(mlx);
 	mlx_key_hook(mlx->win_ptr, &ft_move, mlx);
-	mlx_hook(mlx->win_ptr, 17, 0, ft_exit, (void *)mlx);//gere croix fenetre
+	mlx_hook(mlx->win_ptr, 17, 0, ft_exit, (void *)mlx);
 	mlx_loop(mlx->mlx_ptr);
 	ft_exit(mlx);
 }
