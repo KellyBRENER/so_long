@@ -1,4 +1,4 @@
-/* ************************************************************************** */
+/******************************************************************************/
 /*                                                                            */
 /*                                                        :::      ::::::::   */
 /*   get_next_line.c                                    :+:      :+:    :+:   */
@@ -6,9 +6,9 @@
 /*   By: kbrener- <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/16 14:32:58 by kbrener-          #+#    #+#             */
-/*   Updated: 2024/04/05 15:47:16 by kbrener-         ###   ########.fr       */
+/*   Updated: 2024/04/29 17:24:46 by kbrener-         ###   ########.fr       */
 /*                                                                            */
-/* ************************************************************************** */
+/******************************************************************************/
 
 #include "get_next_line.h"
 
@@ -78,7 +78,7 @@ int	ft_lstclear_gnl(t_list **stash, char *buf)
 	buf = NULL;
 	while (*stash)
 	{
-		if (next_line((*stash)->content) != 0)
+		if (next_line((*stash)->content) == 2)
 		{
 			new_content(stash);
 			return (0);
@@ -145,19 +145,11 @@ char	*get_next_line(int fd)
 
 int	main(void)
 {
-	int	fd1 = open("fichier1.txt", O_RDONLY);
-	int	fd2 = open("fichier2.txt", O_RDONLY);
-	int	fd3 = open("fichier3.txt", O_RDONLY);
+	int	fd1 = open("map2.ber", O_RDONLY);
+	//int	fd2 = open("fichier2.txt", O_RDONLY);
+	//int	fd3 = open("fichier3.txt", O_RDONLY);
 	char	*str = get_next_line(fd1);
 
-	printf("%s\n", str);
-	free(str);
-	str = NULL;
-	str = get_next_line(fd2);
-	printf("%s\n", str);
-	free(str);
-	str = NULL;
-	str = get_next_line(fd3);
 	printf("%s\n", str);
 	free(str);
 	str = NULL;
@@ -165,15 +157,23 @@ int	main(void)
 	printf("%s\n", str);
 	free(str);
 	str = NULL;
-	str = get_next_line(fd2);
+	str = get_next_line(fd1);
 	printf("%s\n", str);
 	free(str);
 	str = NULL;
-	str = get_next_line(fd3);
+	str = get_next_line(fd1);
 	printf("%s\n", str);
 	free(str);
 	str = NULL;
-	str = get_next_line(fd3);
+	str = get_next_line(fd1);
+	printf("%s\n", str);
+	free(str);
+	str = NULL;
+	str = get_next_line(fd1);
+	printf("%s\n", str);
+	free(str);
+	str = NULL;
+	str = get_next_line(fd1);
 	printf("%s\n", str);
 	free(str);
 	str = NULL;
@@ -183,7 +183,8 @@ int	main(void)
 	str = NULL;
 
 	close(fd1);
-	close(fd2);
-	close(fd3);
+	//close(fd2);
+	//close(fd3);
 	return (0);
-}*/
+}
+*/

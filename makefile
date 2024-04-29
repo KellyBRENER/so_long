@@ -1,4 +1,4 @@
-# **************************************************************************** #
+#******************************************************************************#
 #                                                                              #
 #                                                         :::      ::::::::    #
 #    makefile                                           :+:      :+:    :+:    #
@@ -6,9 +6,9 @@
 #    By: kbrener- <marvin@42.fr>                    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/04/09 14:58:49 by kbrener-          #+#    #+#              #
-#    Updated: 2024/04/26 14:40:13 by kbrener-         ###   ########.fr        #
+#    Updated: 2024/04/29 17:51:25 by kbrener-         ###   ########.fr        #
 #                                                                              #
-# **************************************************************************** #
+#******************************************************************************#
 
 # Program name
 NAME	= so_long
@@ -84,14 +84,14 @@ $(NAME): $(OBJ)
 
 clean:
 	@make clean -sC $(LIBFT_PATH)
-	@rm -f $(OBJ)
+	@rm -rf $(OBJ)
 	@echo "$(BOLD)$(ORANGE)🌀     Cleaned .o so_long's files   🌀$(RESET)"
 	@make clean -sC $(MLX_PATH)
 	@echo "$(BOLD)$(ORANGE)🌀     Cleaned .o MiniLibX's files  🌀$(RESET)"
 
 fclean: clean
-	@make fclean -sC libft/
-	@rm -f $(NAME)
+	@make fclean -sC $(LIBFT_PATH)
+	@rm -rf $(NAME)
 	@echo "$(BOLD)$(ORANGE)🌀     Cleaned so_long exec       🌀$(RESET)"
 
 re: fclean all
