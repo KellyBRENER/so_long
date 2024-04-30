@@ -6,7 +6,7 @@
 /*   By: kbrener- <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/16 14:32:58 by kbrener-          #+#    #+#             */
-/*   Updated: 2024/04/29 17:24:46 by kbrener-         ###   ########.fr       */
+/*   Updated: 2024/04/30 11:01:53 by kbrener-         ###   ########.fr       */
 /*                                                                            */
 /******************************************************************************/
 
@@ -100,6 +100,8 @@ int	make_stash(int fd, char *buf, t_list **stash)
 {
 	int	lu;
 
+	if (stash_next_line(*stash) == 0)
+		return (1);
 	lu = (int)read(fd, buf, BUFFER_SIZE);
 	buf[lu] = '\0';
 	while (lu)

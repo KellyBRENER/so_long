@@ -6,7 +6,7 @@
 /*   By: kbrener- <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/16 11:05:55 by kbrener-          #+#    #+#             */
-/*   Updated: 2024/04/29 16:46:23 by kbrener-         ###   ########.fr       */
+/*   Updated: 2024/04/30 10:59:05 by kbrener-         ###   ########.fr       */
 /*                                                                            */
 /******************************************************************************/
 
@@ -26,6 +26,7 @@
 
 char			*get_next_line(int fd);
 int				next_line(char *buf);
+int				stash_next_line(t_list *stash);
 int				len_line(t_list *stash);
 int				ft_lstadd_back_gnl(t_list **stash, t_list *new);
 t_list			*ft_lstnew_gnl(char *buf);

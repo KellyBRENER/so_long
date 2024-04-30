@@ -6,7 +6,7 @@
 /*   By: kbrener- <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/16 11:04:55 by kbrener-          #+#    #+#             */
-/*   Updated: 2024/04/29 16:37:58 by kbrener-         ###   ########.fr       */
+/*   Updated: 2024/04/30 10:54:35 by kbrener-         ###   ########.fr       */
 /*                                                                            */
 /******************************************************************************/
 
@@ -109,4 +109,15 @@ int	next_line(char *buf)
 		return (1);
 	}
 	return (0);
+}
+
+int	stash_next_line(t_list *stash)
+{
+	while (stash)
+	{
+		if (next_line(stash->content) != 0)
+			return (0);
+		stash = stash->next;
+	}
+	return (1);
 }
