@@ -6,7 +6,7 @@
 /*   By: kbrener- <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/19 10:31:51 by kbrener-          #+#    #+#             */
-/*   Updated: 2024/04/29 15:23:48 by kbrener-         ###   ########.fr       */
+/*   Updated: 2024/05/02 09:47:47 by kbrener-         ###   ########.fr       */
 /*                                                                            */
 /******************************************************************************/
 
@@ -42,6 +42,10 @@ void	ft_free_image(t_mlx_data *mlx)
 	if (mlx->all_img)
 	{
 		mlx_destroy_image(mlx->mlx_ptr, mlx->all_img->img_pr);
+		mlx_destroy_image(mlx->mlx_ptr, mlx->all_img->img_peno);
+		mlx_destroy_image(mlx->mlx_ptr, mlx->all_img->img_peok);
+		mlx_destroy_image(mlx->mlx_ptr, mlx->all_img->img_pd);
+		mlx_destroy_image(mlx->mlx_ptr, mlx->all_img->img_pu);
 		mlx_destroy_image(mlx->mlx_ptr, mlx->all_img->img_pl);
 		mlx_destroy_image(mlx->mlx_ptr, mlx->all_img->img_w);
 		mlx_destroy_image(mlx->mlx_ptr, mlx->all_img->img_f);

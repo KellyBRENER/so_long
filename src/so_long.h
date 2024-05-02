@@ -1,4 +1,4 @@
-/* ************************************************************************** */
+/******************************************************************************/
 /*                                                                            */
 /*                                                        :::      ::::::::   */
 /*   so_long.h                                          :+:      :+:    :+:   */
@@ -6,9 +6,9 @@
 /*   By: kbrener- <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/12 15:11:01 by kbrener-          #+#    #+#             */
-/*   Updated: 2024/04/26 15:19:37 by kbrener-         ###   ########.fr       */
+/*   Updated: 2024/05/02 11:09:55 by kbrener-         ###   ########.fr       */
 /*                                                                            */
-/* ************************************************************************** */
+/******************************************************************************/
 
 #ifndef SO_LONG_H
 
@@ -24,8 +24,8 @@
 # include <X11/keysym.h>
 # include <X11/X.h>
 
-# define IMG_WIDTH 75
-# define IMG_HEIGHT 75
+# define IMG_WIDTH 64
+# define IMG_HEIGHT 64
 
 typedef struct s_map_data
 {
@@ -43,16 +43,24 @@ typedef struct s_all_img
 {
 	char	*path_pr;
 	char	*path_pl;
+	char	*path_pu;
+	char	*path_pd;
 	char	*path_w;
 	char	*path_f;
 	char	*path_e;
 	char	*path_c;
+	char	*path_peno;
+	char	*path_peok;
 	void	*img_pr;
 	void	*img_pl;
+	void	*img_pu;
+	void	*img_pd;
 	void	*img_w;
 	void	*img_f;
 	void	*img_c;
 	void	*img_e;
+	void	*img_peno;
+	void	*img_peok;
 	int		height;
 	int		width;
 }	t_all_img;
@@ -78,8 +86,10 @@ void		ft_free_tab(char **tab);
 
 /*print.c : fonctions permettant d'afficher la map*/
 void		ft_img_to_window(t_mlx_data *mlx, void *img, int x, int y);
-void		ft_print_map(t_mlx_data *mlx);
-void		ft_print_move(t_mlx_data *mlx, int dir);
+void		ft_print_p(t_mlx_data *mlx, void *img);
+void		ft_print_map(t_mlx_data *mlx, void *img);
+//void		ft_print_move(t_mlx_data *mlx, void *img, int dir);
+int			ft_changewindow(void *mlx);
 
 /*check_map.c : fonctions permettant de verifier que le fichier fourni est
 utilisable pour construire la map*/

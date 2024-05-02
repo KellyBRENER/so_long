@@ -6,7 +6,7 @@
 #    By: kbrener- <marvin@42.fr>                    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/04/09 14:58:49 by kbrener-          #+#    #+#              #
-#    Updated: 2024/04/29 17:51:25 by kbrener-         ###   ########.fr        #
+#    Updated: 2024/05/02 11:33:44 by kbrener-         ###   ########.fr        #
 #                                                                              #
 #******************************************************************************#
 
@@ -91,6 +91,7 @@ clean:
 
 fclean: clean
 	@make fclean -sC $(LIBFT_PATH)
+	@make clean -sC $(MLX_PATH)
 	@rm -rf $(NAME)
 	@echo "$(BOLD)$(ORANGE)🌀     Cleaned so_long exec       🌀$(RESET)"
 
