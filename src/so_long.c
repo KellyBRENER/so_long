@@ -6,7 +6,7 @@
 /*   By: kbrener- <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/09 14:55:14 by kbrener-          #+#    #+#             */
-/*   Updated: 2024/05/03 14:41:03 by kbrener-         ###   ########.fr       */
+/*   Updated: 2024/05/03 15:26:31 by kbrener-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,6 +50,9 @@ int	main(int argc, char **argv)
 	mlx = malloc(sizeof(t_mlx_data));
 	if (!mlx)
 		ft_error(NULL, "t_mlx_data malloc failed");
+	mlx->all_img = NULL;
+	mlx->mlx_ptr = NULL;
+	mlx->win_ptr = NULL;
 	ft_check_map(mlx, argv[1]);
 	ft_free_tab(mlx->map->tab);
 	mlx->map->tab = ft_init_map_tab(argv[1], mlx->map);

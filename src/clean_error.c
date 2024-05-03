@@ -6,7 +6,7 @@
 /*   By: kbrener- <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/19 10:31:51 by kbrener-          #+#    #+#             */
-/*   Updated: 2024/05/03 13:48:40 by kbrener-         ###   ########.fr       */
+/*   Updated: 2024/05/03 15:20:58 by kbrener-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -69,8 +69,10 @@ void	ft_clean_all(t_mlx_data *mlx)
 		if (mlx->win_ptr)
 			mlx_destroy_window(mlx->mlx_ptr, mlx->win_ptr);
 		if (mlx->mlx_ptr)
+		{
 			mlx_destroy_display(mlx->mlx_ptr);
+			free(mlx->mlx_ptr);
+		}
 	}
-	free(mlx->mlx_ptr);
 	free(mlx);
 }

@@ -6,7 +6,7 @@
 /*   By: kbrener- <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/19 16:36:17 by kbrener-          #+#    #+#             */
-/*   Updated: 2024/05/03 15:12:29 by kbrener-         ###   ########.fr       */
+/*   Updated: 2024/05/03 15:37:58 by kbrener-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -74,4 +74,5 @@ void	ft_print_move(t_mlx_data *mlx, int dir, void *img)
 	mlx_string_put(mlx->mlx_ptr, mlx->win_ptr, 10, 20, 0x00FF00, "MOVES :");
 	mlx_string_put(mlx->mlx_ptr, mlx->win_ptr, 10, 40, 0x00FF00, moves);
 	free(moves);
+	ft_printf("%d\n", mlx->move);
 }
