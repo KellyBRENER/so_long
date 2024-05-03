@@ -6,7 +6,7 @@
 /*   By: kbrener- <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/12 15:11:01 by kbrener-          #+#    #+#             */
-/*   Updated: 2024/05/02 11:09:55 by kbrener-         ###   ########.fr       */
+/*   Updated: 2024/05/02 15:38:12 by kbrener-         ###   ########.fr       */
 /*                                                                            */
 /******************************************************************************/
 
@@ -41,16 +41,6 @@ typedef struct s_map_data
 
 typedef struct s_all_img
 {
-	char	*path_pr;
-	char	*path_pl;
-	char	*path_pu;
-	char	*path_pd;
-	char	*path_w;
-	char	*path_f;
-	char	*path_e;
-	char	*path_c;
-	char	*path_peno;
-	char	*path_peok;
 	void	*img_pr;
 	void	*img_pl;
 	void	*img_pu;
@@ -61,6 +51,7 @@ typedef struct s_all_img
 	void	*img_e;
 	void	*img_peno;
 	void	*img_peok;
+	void	*img_black;
 	int		height;
 	int		width;
 }	t_all_img;
@@ -88,7 +79,7 @@ void		ft_free_tab(char **tab);
 void		ft_img_to_window(t_mlx_data *mlx, void *img, int x, int y);
 void		ft_print_p(t_mlx_data *mlx, void *img);
 void		ft_print_map(t_mlx_data *mlx, void *img);
-//void		ft_print_move(t_mlx_data *mlx, void *img, int dir);
+void		ft_print_move(t_mlx_data *mlx);
 int			ft_changewindow(void *mlx);
 
 /*check_map.c : fonctions permettant de verifier que le fichier fourni est
@@ -107,9 +98,9 @@ int			ft_file_is_ber(char *argv);
 /*init.c : fonctions qui initialisent structures et tableaux*/
 char		**ft_init_map_tab(char *argv, t_map_data *map);
 t_map_data	*ft_init_map_data(t_mlx_data *mlx);
-int			ft_xpm_to_img(t_mlx_data *mlx, t_all_img *img);
 t_all_img	*ft_init_all_img(t_mlx_data *mlx);
 void		ft_init_mlx(t_mlx_data *mlx);
+void	*ft_init_img(t_mlx_data *mlx, char *name, int width, int height);
 
 /*keypress.c : gere les interactions entre clavier/souris et map*/
 int			ft_move(int keysym, t_mlx_data *mlx);

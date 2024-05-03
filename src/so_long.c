@@ -6,7 +6,7 @@
 /*   By: kbrener- <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/09 14:55:14 by kbrener-          #+#    #+#             */
-/*   Updated: 2024/05/02 11:27:40 by kbrener-         ###   ########.fr       */
+/*   Updated: 2024/05/02 15:11:44 by kbrener-         ###   ########.fr       */
 /*                                                                            */
 /******************************************************************************/
 
@@ -45,7 +45,7 @@ int	main(int argc, char **argv)
 	mlx->map->tab[mlx->map->p_y][mlx->map->p_x] = '0';
 	ft_print_map(mlx, mlx->all_img->img_pr);
 	mlx_key_hook(mlx->win_ptr, &ft_move, mlx);
-	//mlx_hook(mlx->win_ptr, 34, 0, ft_changewindow, (void *)mlx);
+	//mlx_do_sync(mlx->mlx_ptr);
 	mlx_hook(mlx->win_ptr, 17, 0, ft_exit, (void *)mlx);
 	mlx_loop(mlx->mlx_ptr);
 	ft_exit(mlx);

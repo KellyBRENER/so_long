@@ -6,7 +6,7 @@
 /*   By: kbrener- <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/23 09:34:36 by kbrener-          #+#    #+#             */
-/*   Updated: 2024/05/02 11:17:46 by kbrener-         ###   ########.fr       */
+/*   Updated: 2024/05/02 14:24:29 by kbrener-         ###   ########.fr       */
 /*                                                                            */
 /******************************************************************************/
 
@@ -44,6 +44,7 @@ void	ft_up(t_mlx_data *mlx)
 	}
 	mlx->map->p_y = y - 1;
 	ft_print_map(mlx, mlx->all_img->img_pu);
+	ft_print_move(mlx);
 }
 
 void	ft_down(t_mlx_data *mlx)

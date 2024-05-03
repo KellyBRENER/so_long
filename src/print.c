@@ -6,7 +6,7 @@
 /*   By: kbrener- <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/19 16:36:17 by kbrener-          #+#    #+#             */
-/*   Updated: 2024/05/02 11:39:58 by kbrener-         ###   ########.fr       */
+/*   Updated: 2024/05/02 15:41:09 by kbrener-         ###   ########.fr       */
 /*                                                                            */
 /******************************************************************************/
 
@@ -56,11 +56,29 @@ void	ft_print_p(t_mlx_data *mlx, void *img)
 	if (mlx->map->tab[y][x] == 'E')
 	{
 		if (mlx->map->c == 0)
+		{
+			ft_img_to_window(mlx, mlx->all_img->img_peok, x, y);
+			mlx_do_sync(mlx->mlx_ptr);
+			usleep(800000);
 			ft_exit(mlx);
+		}
 		ft_img_to_window(mlx, mlx->all_img->img_peno, x, y);
 	}
 	else
 		ft_img_to_window(mlx, img, x, y);
+}
+
+void	ft_print_move(t_mlx_data *mlx)
+{
+	char	*moves;
+
+	mlx->move++;
+	moves = ft_itoa(mlx->move);
+	mlx_put_image_to_window(mlx->mlx_ptr, mlx->win_ptr,
+		mlx->all_img->img_black, 7, 17);
+	mlx_string_put(mlx->mlx_ptr, mlx->win_ptr, 9, 19, 0x00FF00, "MOVES :");
+	mlx_string_put(mlx->mlx_ptr, mlx->win_ptr, 49, 19, 0x00FF00, moves);
+	free(moves);
 }
 /*
 affiche les changements sur la map et le nombre de mvt effectues

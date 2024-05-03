@@ -6,7 +6,7 @@
 /*   By: kbrener- <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/18 15:00:11 by kbrener-          #+#    #+#             */
-/*   Updated: 2024/05/02 09:51:02 by kbrener-         ###   ########.fr       */
+/*   Updated: 2024/05/02 16:17:41 by kbrener-         ###   ########.fr       */
 /*                                                                            */
 /******************************************************************************/
 
@@ -58,33 +58,12 @@ t_map_data	*ft_init_map_data(t_mlx_data *mlx)
 	return (map);
 }
 
-int	ft_xpm_to_img(t_mlx_data *mlx, t_all_img *img)
+void	*ft_init_img(t_mlx_data *mlx, char *name, int width, int height)
 {
-	img->img_pr = mlx_xpm_file_to_image(mlx->mlx_ptr,
-			img->path_pr, &img->width, &img->height);
-	img->img_pl = mlx_xpm_file_to_image(mlx->mlx_ptr,
-			img->path_pl, &img->width, &img->height);
-	img->img_pu = mlx_xpm_file_to_image(mlx->mlx_ptr,
-			img->path_pu, &img->width, &img->height);
-	img->img_pd = mlx_xpm_file_to_image(mlx->mlx_ptr,
-			img->path_pd, &img->width, &img->height);
-	img->img_w = mlx_xpm_file_to_image(mlx->mlx_ptr,
-			img->path_w, &img->width, &img->height);
-	img->img_f = mlx_xpm_file_to_image(mlx->mlx_ptr,
-			img->path_f, &img->width, &img->height);
-	img->img_e = mlx_xpm_file_to_image(mlx->mlx_ptr,
-			img->path_e, &img->width, &img->height);
-	img->img_c = mlx_xpm_file_to_image(mlx->mlx_ptr,
-			img->path_c, &img->width, &img->height);
-	img->img_peno = mlx_xpm_file_to_image(mlx->mlx_ptr,
-			img->path_peno, &img->width, &img->height);
-	img->img_peok = mlx_xpm_file_to_image(mlx->mlx_ptr,
-			img->path_peok, &img->width, &img->height);
-	if (!img->img_peok || !img->img_pr || !img->img_peno || !img->img_c
-		|| !img->img_e || !img->img_f || !img->img_w || !img->img_pl
-		|| !img->img_pd || !img->img_pu)
-		return (-1);
-	return (0);
+	void	*img;
+
+	img = mlx_xpm_file_to_image(mlx->mlx_ptr, name, &height, &width);
+	return (img);
 }
 
 /*malloc et initialise toutes les images*/
@@ -97,18 +76,19 @@ t_all_img	*ft_init_all_img(t_mlx_data *mlx)
 		return (NULL);
 	img->width = IMG_WIDTH;
 	img->height = IMG_HEIGHT;
-	img->path_pr = "./asset/pr.xpm";
-	img->path_pl = "./asset/pl.xpm";
-	img->path_pu = "./asset/pu.xpm";
-	img->path_pd = "./asset/pd.xpm";
-	img->path_w = "./asset/w.xpm";
-	img->path_f = "./asset/f.xpm";
-	img->path_e = "./asset/e.xpm";
-	img->path_peno = "./asset/peno.xpm";
-	img->path_peok = "./asset/peok.xpm";
-	img->path_c = "./asset/c.xpm";
-	if (ft_xpm_to_img(mlx, img) == -1)
-		return (NULL);
+	img->img_pr = ft_init_img(mlx, "./asset/pr.xpm", img->width, img->height);
+	img->img_pl = ft_init_img(mlx, "./asset/pl.xpm", img->width, img->height);
+	img->img_pu = ft_init_img(mlx, "./asset/pu.xpm", img->width, img->height);
+	img->img_pd = ft_init_img(mlx, "./asset/pd.xpm", img->width, img->height);
+	img->img_w = ft_init_img(mlx, "./asset/w.xpm", img->width, img->height);
+	img->img_f = ft_init_img(mlx, "./asset/f.xpm", img->width, img->height);
+	img->img_e = ft_init_img(mlx, "./asset/e.xpm", img->width, img->height);
+	img->img_c = ft_init_img(mlx, "./asset/c.xpm", img->width, img->height);
+	img->img_peno = ft_init_img(mlx, "./asset/peno.xpm",
+		img->width, img->height);
+	img->img_peok = ft_init_img(mlx, "./asset/peok.xpm",
+		img->width, img->height);
+	//img->img_black = ft_init_img(mlx, "./asset/black.xpm", 30, 50);
 	return (img);
 }
 
