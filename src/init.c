@@ -6,7 +6,7 @@
 /*   By: kbrener- <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/18 15:00:11 by kbrener-          #+#    #+#             */
-/*   Updated: 2024/05/03 13:47:54 by kbrener-         ###   ########.fr       */
+/*   Updated: 2024/05/03 14:54:51 by kbrener-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -86,7 +86,7 @@ t_all_img	*ft_init_all_img(t_mlx_data *mlx)
 	img->img_c = ft_init_img(mlx, "./asset/c.xpm", len, len);
 	img->img_peno = ft_init_img(mlx, "./asset/peno.xpm", len, len);
 	img->img_peok = ft_init_img(mlx, "./asset/peok.xpm", len, len);
-	img->img_black = ft_init_img(mlx, "./asset/black.xpm", 30, 50);
+	img->img_black = ft_init_img(mlx, "./asset/black.xpm", len, len);
 	return (img);
 }
 

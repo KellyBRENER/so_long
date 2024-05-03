@@ -6,7 +6,7 @@
 /*   By: kbrener- <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/19 16:36:17 by kbrener-          #+#    #+#             */
-/*   Updated: 2024/05/03 14:24:04 by kbrener-         ###   ########.fr       */
+/*   Updated: 2024/05/03 15:12:29 by kbrener-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,7 +45,6 @@ void	ft_print_map(t_mlx_data *mlx)
 		}
 		y++;
 	}
-	ft_img_to_window(mlx, mlx->all_img->img_black, 7, 17);
 }
 
 /*affiche les changements sur la map et le nombre de mvt effectues*/
@@ -71,7 +70,8 @@ void	ft_print_move(t_mlx_data *mlx, int dir, void *img)
 		ft_img_to_window(mlx, img, x + 1, y);
 	mlx->move++;
 	moves = ft_itoa(mlx->move);
-	mlx_string_put(mlx->mlx_ptr, mlx->win_ptr, 9, 19, 0x00FF00, "MOVES :");
-	mlx_string_put(mlx->mlx_ptr, mlx->win_ptr, 49, 19, 0x00FF00, moves);
+	ft_img_to_window(mlx, mlx->all_img->img_black, 0, 0);
+	mlx_string_put(mlx->mlx_ptr, mlx->win_ptr, 10, 20, 0x00FF00, "MOVES :");
+	mlx_string_put(mlx->mlx_ptr, mlx->win_ptr, 10, 40, 0x00FF00, moves);
 	free(moves);
 }
