@@ -1,4 +1,4 @@
-/******************************************************************************/
+/* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
 /*   keypress.c                                         :+:      :+:    :+:   */
@@ -6,9 +6,9 @@
 /*   By: kbrener- <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/23 09:34:36 by kbrener-          #+#    #+#             */
-/*   Updated: 2024/05/02 14:24:29 by kbrener-         ###   ########.fr       */
+/*   Updated: 2024/05/03 14:45:08 by kbrener-         ###   ########.fr       */
 /*                                                                            */
-/******************************************************************************/
+/* ************************************************************************** */
 
 #include "so_long.h"
 
@@ -27,7 +27,6 @@ int	ft_move(int keysym, t_mlx_data *mlx)
 	return (0);
 }
 
-
 void	ft_up(t_mlx_data *mlx)
 {
 	int	x;
@@ -37,14 +36,18 @@ void	ft_up(t_mlx_data *mlx)
 	y = mlx->map->p_y;
 	if (mlx->map->tab[y - 1][x] == '1')
 		return ;
-	if (mlx->map->tab[y - 1][x] == 'C')
+	else if (mlx->map->tab[y - 1][x] == 'E')
+		ft_p_exit(mlx, 1);
+	else
 	{
-		mlx->map->c--;
-		mlx->map->tab[y - 1][x] = '0';
+		if (mlx->map->tab[y - 1][x] == 'C')
+		{
+			mlx->map->c--;
+			mlx->map->tab[y - 1][x] = '0';
+		}
+		ft_print_move(mlx, 1, mlx->all_img->img_pu);
 	}
 	mlx->map->p_y = y - 1;
-	ft_print_map(mlx, mlx->all_img->img_pu);
-	ft_print_move(mlx);
 }
 
 void	ft_down(t_mlx_data *mlx)
@@ -56,13 +59,18 @@ void	ft_down(t_mlx_data *mlx)
 	y = mlx->map->p_y;
 	if (mlx->map->tab[y + 1][x] == '1')
 		return ;
-	if (mlx->map->tab[y + 1][x] == 'C')
+	else if (mlx->map->tab[y + 1][x] == 'E')
+		ft_p_exit(mlx, 2);
+	else
 	{
-		mlx->map->c--;
-		mlx->map->tab[y + 1][x] = '0';
+		if (mlx->map->tab[y + 1][x] == 'C')
+		{
+			mlx->map->c--;
+			mlx->map->tab[y + 1][x] = '0';
+		}
+		ft_print_move(mlx, 2, mlx->all_img->img_pd);
 	}
 	mlx->map->p_y = y + 1;
-	ft_print_map(mlx, mlx->all_img->img_pd);
 }
 
 void	ft_left(t_mlx_data *mlx)
@@ -74,13 +82,18 @@ void	ft_left(t_mlx_data *mlx)
 	y = mlx->map->p_y;
 	if (mlx->map->tab[y][x - 1] == '1')
 		return ;
-	if (mlx->map->tab[y][x - 1] == 'C')
+	else if (mlx->map->tab[y][x - 1] == 'E')
+		ft_p_exit(mlx, 3);
+	else
 	{
-		mlx->map->c--;
-		mlx->map->tab[y][x - 1] = '0';
+		if (mlx->map->tab[y][x - 1] == 'C')
+		{
+			mlx->map->c--;
+			mlx->map->tab[y][x - 1] = '0';
+		}
+		ft_print_move(mlx, 3, mlx->all_img->img_pl);
 	}
 	mlx->map->p_x = x - 1;
-	ft_print_map(mlx, mlx->all_img->img_pl);
 }
 
 void	ft_right(t_mlx_data *mlx)
@@ -92,11 +105,16 @@ void	ft_right(t_mlx_data *mlx)
 	y = mlx->map->p_y;
 	if (mlx->map->tab[y][x + 1] == '1')
 		return ;
-	if (mlx->map->tab[y][x + 1] == 'C')
+	else if (mlx->map->tab[y][x + 1] == 'E')
+		ft_p_exit(mlx, 4);
+	else
 	{
-		mlx->map->c--;
-		mlx->map->tab[y][x + 1] = '0';
+		if (mlx->map->tab[y][x + 1] == 'C')
+		{
+			mlx->map->c--;
+			mlx->map->tab[y][x + 1] = '0';
+		}
+		ft_print_move(mlx, 4, mlx->all_img->img_pr);
 	}
 	mlx->map->p_x = x + 1;
-	ft_print_map(mlx, mlx->all_img->img_pr);
 }

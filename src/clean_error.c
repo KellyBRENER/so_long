@@ -1,4 +1,4 @@
-/******************************************************************************/
+/* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
 /*   clean_error.c                                      :+:      :+:    :+:   */
@@ -6,9 +6,9 @@
 /*   By: kbrener- <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/19 10:31:51 by kbrener-          #+#    #+#             */
-/*   Updated: 2024/05/02 09:47:47 by kbrener-         ###   ########.fr       */
+/*   Updated: 2024/05/03 13:48:40 by kbrener-         ###   ########.fr       */
 /*                                                                            */
-/******************************************************************************/
+/* ************************************************************************** */
 
 #include "so_long.h"
 
@@ -51,6 +51,7 @@ void	ft_free_image(t_mlx_data *mlx)
 		mlx_destroy_image(mlx->mlx_ptr, mlx->all_img->img_f);
 		mlx_destroy_image(mlx->mlx_ptr, mlx->all_img->img_e);
 		mlx_destroy_image(mlx->mlx_ptr, mlx->all_img->img_c);
+		mlx_destroy_image(mlx->mlx_ptr, mlx->all_img->img_black);
 		free(mlx->all_img);
 		mlx->all_img = NULL;
 	}

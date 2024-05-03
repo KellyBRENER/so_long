@@ -1,4 +1,4 @@
-/******************************************************************************/
+/* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
 /*   so_long.c                                          :+:      :+:    :+:   */
@@ -6,11 +6,23 @@
 /*   By: kbrener- <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/09 14:55:14 by kbrener-          #+#    #+#             */
-/*   Updated: 2024/05/02 15:11:44 by kbrener-         ###   ########.fr       */
+/*   Updated: 2024/05/03 14:41:03 by kbrener-         ###   ########.fr       */
 /*                                                                            */
-/******************************************************************************/
+/* ************************************************************************** */
 
 #include "so_long.h"
+
+void	ft_p_exit(t_mlx_data *mlx, int dir)
+{
+	if (mlx->map->c == 0)
+		{
+			ft_print_move(mlx, dir, mlx->all_img->img_peok);
+			mlx_do_sync(mlx->mlx_ptr);
+			usleep(800000);
+			ft_exit(mlx);
+		}
+	ft_print_move(mlx, dir, mlx->all_img->img_peno);
+}
 
 /*clean et sort du programme proprement en cas d'erreur*/
 void	ft_error(t_mlx_data *mlx, char *message)
@@ -42,8 +54,7 @@ int	main(int argc, char **argv)
 	ft_free_tab(mlx->map->tab);
 	mlx->map->tab = ft_init_map_tab(argv[1], mlx->map);
 	ft_init_mlx(mlx);
-	mlx->map->tab[mlx->map->p_y][mlx->map->p_x] = '0';
-	ft_print_map(mlx, mlx->all_img->img_pr);
+	ft_print_map(mlx);
 	mlx_key_hook(mlx->win_ptr, &ft_move, mlx);
 	//mlx_do_sync(mlx->mlx_ptr);
 	mlx_hook(mlx->win_ptr, 17, 0, ft_exit, (void *)mlx);

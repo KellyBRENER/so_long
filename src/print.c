@@ -1,4 +1,4 @@
-/******************************************************************************/
+/* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
 /*   print.c                                            :+:      :+:    :+:   */
@@ -6,9 +6,9 @@
 /*   By: kbrener- <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/19 16:36:17 by kbrener-          #+#    #+#             */
-/*   Updated: 2024/05/02 15:41:09 by kbrener-         ###   ########.fr       */
+/*   Updated: 2024/05/03 14:24:04 by kbrener-         ###   ########.fr       */
 /*                                                                            */
-/******************************************************************************/
+/* ************************************************************************** */
 
 #include "so_long.h"
 
@@ -20,7 +20,7 @@ void	ft_img_to_window(t_mlx_data *mlx, void *img, int x, int y)
 }
 
 /*parcours la map et affiche chaque image en fonction du charactere trouve*/
-void	ft_print_map(t_mlx_data *mlx, void *img)
+void	ft_print_map(t_mlx_data *mlx)
 {
 	int	x;
 	int	y;
@@ -39,53 +39,21 @@ void	ft_print_map(t_mlx_data *mlx, void *img)
 				ft_img_to_window(mlx, mlx->all_img->img_c, x, y);
 			else if (mlx->map->tab[y][x] == 'E')
 				ft_img_to_window(mlx, mlx->all_img->img_e, x, y);
+			else if (mlx->map->tab[y][x] == 'P')
+				ft_img_to_window(mlx, mlx->all_img->img_pr, x, y);
 			x++;
 		}
 		y++;
 	}
-	ft_print_p(mlx, img);
+	ft_img_to_window(mlx, mlx->all_img->img_black, 7, 17);
 }
 
-void	ft_print_p(t_mlx_data *mlx, void *img)
+/*affiche les changements sur la map et le nombre de mvt effectues*/
+void	ft_print_move(t_mlx_data *mlx, int dir, void *img)
 {
 	int	x;
 	int	y;
-
-	x = mlx->map->p_x;
-	y = mlx->map->p_y;
-	if (mlx->map->tab[y][x] == 'E')
-	{
-		if (mlx->map->c == 0)
-		{
-			ft_img_to_window(mlx, mlx->all_img->img_peok, x, y);
-			mlx_do_sync(mlx->mlx_ptr);
-			usleep(800000);
-			ft_exit(mlx);
-		}
-		ft_img_to_window(mlx, mlx->all_img->img_peno, x, y);
-	}
-	else
-		ft_img_to_window(mlx, img, x, y);
-}
-
-void	ft_print_move(t_mlx_data *mlx)
-{
 	char	*moves;
-
-	mlx->move++;
-	moves = ft_itoa(mlx->move);
-	mlx_put_image_to_window(mlx->mlx_ptr, mlx->win_ptr,
-		mlx->all_img->img_black, 7, 17);
-	mlx_string_put(mlx->mlx_ptr, mlx->win_ptr, 9, 19, 0x00FF00, "MOVES :");
-	mlx_string_put(mlx->mlx_ptr, mlx->win_ptr, 49, 19, 0x00FF00, moves);
-	free(moves);
-}
-/*
-affiche les changements sur la map et le nombre de mvt effectues
-void	ft_print_move(t_mlx_data *mlx, void *img, int dir)
-{
-	int	x;
-	int	y;
 
 	x = mlx->map->p_x;
 	y = mlx->map->p_y;
@@ -94,23 +62,16 @@ void	ft_print_move(t_mlx_data *mlx, void *img, int dir)
 	else
 		ft_img_to_window(mlx, mlx->all_img->img_f, x, y);
 	if (dir == 1)
-		y = y - 1;
+		ft_img_to_window(mlx, img, x, y - 1);
 	else if (dir == 2)
-		y = y + 1;
+		ft_img_to_window(mlx, img, x, y + 1);
 	else if (dir == 3)
-		x = x - 1;
+		ft_img_to_window(mlx, img, x - 1, y);
 	else if (dir == 4)
-		x = x + 1;
-	ft_img_to_window(mlx, img, x, y);
+		ft_img_to_window(mlx, img, x + 1, y);
 	mlx->move++;
-	ft_printf("%d\n", mlx->move);
-}*/
-
-int	ft_changewindow(void *mlx)
-{
-	t_mlx_data	*mlx_bis;
-
-	mlx_bis = (t_mlx_data *)mlx;
-	ft_print_map(mlx_bis, mlx_bis->all_img->img_pr);
-	return (0);
+	moves = ft_itoa(mlx->move);
+	mlx_string_put(mlx->mlx_ptr, mlx->win_ptr, 9, 19, 0x00FF00, "MOVES :");
+	mlx_string_put(mlx->mlx_ptr, mlx->win_ptr, 49, 19, 0x00FF00, moves);
+	free(moves);
 }

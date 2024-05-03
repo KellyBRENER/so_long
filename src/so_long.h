@@ -1,4 +1,4 @@
-/******************************************************************************/
+/* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
 /*   so_long.h                                          :+:      :+:    :+:   */
@@ -6,9 +6,9 @@
 /*   By: kbrener- <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/12 15:11:01 by kbrener-          #+#    #+#             */
-/*   Updated: 2024/05/02 15:38:12 by kbrener-         ###   ########.fr       */
+/*   Updated: 2024/05/03 14:39:37 by kbrener-         ###   ########.fr       */
 /*                                                                            */
-/******************************************************************************/
+/* ************************************************************************** */
 
 #ifndef SO_LONG_H
 
@@ -67,6 +67,7 @@ typedef struct s_mlx_data
 }	t_mlx_data;
 
 /*so_long : contient le main et les fonctions de sortie*/
+void		ft_p_exit(t_mlx_data *mlx, int dir);
 int			ft_exit(void *mlx);
 void		ft_error(t_mlx_data *mlx, char *message);
 
@@ -77,10 +78,8 @@ void		ft_free_tab(char **tab);
 
 /*print.c : fonctions permettant d'afficher la map*/
 void		ft_img_to_window(t_mlx_data *mlx, void *img, int x, int y);
-void		ft_print_p(t_mlx_data *mlx, void *img);
-void		ft_print_map(t_mlx_data *mlx, void *img);
-void		ft_print_move(t_mlx_data *mlx);
-int			ft_changewindow(void *mlx);
+void		ft_print_map(t_mlx_data *mlx);
+void		ft_print_move(t_mlx_data *mlx, int dir, void *img);
 
 /*check_map.c : fonctions permettant de verifier que le fichier fourni est
 utilisable pour construire la map*/

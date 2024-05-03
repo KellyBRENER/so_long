@@ -1,4 +1,4 @@
-/******************************************************************************/
+/* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
 /*   init.c                                             :+:      :+:    :+:   */
@@ -6,9 +6,9 @@
 /*   By: kbrener- <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/18 15:00:11 by kbrener-          #+#    #+#             */
-/*   Updated: 2024/05/02 16:17:41 by kbrener-         ###   ########.fr       */
+/*   Updated: 2024/05/03 13:47:54 by kbrener-         ###   ########.fr       */
 /*                                                                            */
-/******************************************************************************/
+/* ************************************************************************** */
 
 #include "so_long.h"
 
@@ -62,7 +62,7 @@ void	*ft_init_img(t_mlx_data *mlx, char *name, int width, int height)
 {
 	void	*img;
 
-	img = mlx_xpm_file_to_image(mlx->mlx_ptr, name, &height, &width);
+	img = mlx_xpm_file_to_image(mlx->mlx_ptr, name, &width, &height);
 	return (img);
 }
 
@@ -70,25 +70,23 @@ void	*ft_init_img(t_mlx_data *mlx, char *name, int width, int height)
 t_all_img	*ft_init_all_img(t_mlx_data *mlx)
 {
 	t_all_img	*img;
+	int			len;
 
 	img = malloc(sizeof(t_all_img));
 	if (!img)
 		return (NULL);
-	img->width = IMG_WIDTH;
-	img->height = IMG_HEIGHT;
-	img->img_pr = ft_init_img(mlx, "./asset/pr.xpm", img->width, img->height);
-	img->img_pl = ft_init_img(mlx, "./asset/pl.xpm", img->width, img->height);
-	img->img_pu = ft_init_img(mlx, "./asset/pu.xpm", img->width, img->height);
-	img->img_pd = ft_init_img(mlx, "./asset/pd.xpm", img->width, img->height);
-	img->img_w = ft_init_img(mlx, "./asset/w.xpm", img->width, img->height);
-	img->img_f = ft_init_img(mlx, "./asset/f.xpm", img->width, img->height);
-	img->img_e = ft_init_img(mlx, "./asset/e.xpm", img->width, img->height);
-	img->img_c = ft_init_img(mlx, "./asset/c.xpm", img->width, img->height);
-	img->img_peno = ft_init_img(mlx, "./asset/peno.xpm",
-		img->width, img->height);
-	img->img_peok = ft_init_img(mlx, "./asset/peok.xpm",
-		img->width, img->height);
-	//img->img_black = ft_init_img(mlx, "./asset/black.xpm", 30, 50);
+	len = IMG_HEIGHT;
+	img->img_pr = ft_init_img(mlx, "./asset/pr.xpm", len, len);
+	img->img_pl = ft_init_img(mlx, "./asset/pl.xpm", len, len);
+	img->img_pu = ft_init_img(mlx, "./asset/pu.xpm", len, len);
+	img->img_pd = ft_init_img(mlx, "./asset/pd.xpm", len, len);
+	img->img_w = ft_init_img(mlx, "./asset/w.xpm", len, len);
+	img->img_f = ft_init_img(mlx, "./asset/f.xpm", len, len);
+	img->img_e = ft_init_img(mlx, "./asset/e.xpm", len, len);
+	img->img_c = ft_init_img(mlx, "./asset/c.xpm", len, len);
+	img->img_peno = ft_init_img(mlx, "./asset/peno.xpm", len, len);
+	img->img_peok = ft_init_img(mlx, "./asset/peok.xpm", len, len);
+	img->img_black = ft_init_img(mlx, "./asset/black.xpm", 30, 50);
 	return (img);
 }
 
