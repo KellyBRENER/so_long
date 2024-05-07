@@ -1,4 +1,4 @@
-/* ************************************************************************** */
+/******************************************************************************/
 /*                                                                            */
 /*                                                        :::      ::::::::   */
 /*   init.c                                             :+:      :+:    :+:   */
@@ -6,9 +6,9 @@
 /*   By: kbrener- <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/18 15:00:11 by kbrener-          #+#    #+#             */
-/*   Updated: 2024/05/03 14:54:51 by kbrener-         ###   ########.fr       */
+/*   Updated: 2024/05/07 09:53:24 by kbrener-         ###   ########.fr       */
 /*                                                                            */
-/* ************************************************************************** */
+/******************************************************************************/
 
 #include "so_long.h"
 
@@ -78,8 +78,8 @@ t_all_img	*ft_init_all_img(t_mlx_data *mlx)
 	len = IMG_HEIGHT;
 	img->img_pr = ft_init_img(mlx, "./asset/pr.xpm", len, len);
 	img->img_pl = ft_init_img(mlx, "./asset/pl.xpm", len, len);
-	img->img_pu = ft_init_img(mlx, "./asset/pu.xpm", len, len);
-	img->img_pd = ft_init_img(mlx, "./asset/pd.xpm", len, len);
+	img->img_pu = ft_init_img(mlx, "./asset/pu_2.xpm", len, len);
+	img->img_pd = ft_init_img(mlx, "./asset/pd_2.xpm", len, len);
 	img->img_w = ft_init_img(mlx, "./asset/w.xpm", len, len);
 	img->img_f = ft_init_img(mlx, "./asset/f.xpm", len, len);
 	img->img_e = ft_init_img(mlx, "./asset/e.xpm", len, len);
