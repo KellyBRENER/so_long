@@ -6,7 +6,7 @@
 /*   By: kbrener- <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/19 16:36:17 by kbrener-          #+#    #+#             */
-/*   Updated: 2024/05/03 15:37:58 by kbrener-         ###   ########.fr       */
+/*   Updated: 2024/05/07 09:21:37 by kbrener-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,8 +50,8 @@ void	ft_print_map(t_mlx_data *mlx)
 /*affiche les changements sur la map et le nombre de mvt effectues*/
 void	ft_print_move(t_mlx_data *mlx, int dir, void *img)
 {
-	int	x;
-	int	y;
+	int		x;
+	int		y;
 	char	*moves;
 
 	x = mlx->map->p_x;

@@ -6,7 +6,7 @@
 /*   By: kbrener- <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/09 14:55:14 by kbrener-          #+#    #+#             */
-/*   Updated: 2024/05/03 15:26:31 by kbrener-         ###   ########.fr       */
+/*   Updated: 2024/05/07 09:22:11 by kbrener-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,12 +15,12 @@
 void	ft_p_exit(t_mlx_data *mlx, int dir)
 {
 	if (mlx->map->c == 0)
-		{
-			ft_print_move(mlx, dir, mlx->all_img->img_peok);
-			mlx_do_sync(mlx->mlx_ptr);
-			usleep(800000);
-			ft_exit(mlx);
-		}
+	{
+		ft_print_move(mlx, dir, mlx->all_img->img_peok);
+		mlx_do_sync(mlx->mlx_ptr);
+		usleep(800000);
+		ft_exit(mlx);
+	}
 	ft_print_move(mlx, dir, mlx->all_img->img_peno);
 }
 
@@ -59,7 +59,6 @@ int	main(int argc, char **argv)
 	ft_init_mlx(mlx);
 	ft_print_map(mlx);
 	mlx_key_hook(mlx->win_ptr, &ft_move, mlx);
-	//mlx_do_sync(mlx->mlx_ptr);
 	mlx_hook(mlx->win_ptr, 17, 0, ft_exit, (void *)mlx);
 	mlx_loop(mlx->mlx_ptr);
 	ft_exit(mlx);

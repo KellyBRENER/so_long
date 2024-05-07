@@ -6,7 +6,7 @@
 /*   By: kbrener- <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/12 15:11:01 by kbrener-          #+#    #+#             */
-/*   Updated: 2024/05/03 14:39:37 by kbrener-         ###   ########.fr       */
+/*   Updated: 2024/05/07 09:22:28 by kbrener-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -99,7 +99,7 @@ char		**ft_init_map_tab(char *argv, t_map_data *map);
 t_map_data	*ft_init_map_data(t_mlx_data *mlx);
 t_all_img	*ft_init_all_img(t_mlx_data *mlx);
 void		ft_init_mlx(t_mlx_data *mlx);
-void	*ft_init_img(t_mlx_data *mlx, char *name, int width, int height);
+void		*ft_init_img(t_mlx_data *mlx, char *name, int width, int height);
 
 /*keypress.c : gere les interactions entre clavier/souris et map*/
 int			ft_move(int keysym, t_mlx_data *mlx);
